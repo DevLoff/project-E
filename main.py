@@ -15,8 +15,18 @@ if __name__ == '__main__':
     SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
     SCREEN = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # VARIABLES
+    isGameRunning = True
+    eventList : list
+
     # GAME LOOP
-    while True:
-        pass
+    while isGameRunning:
+        # EVENT HANDLER
+        eventList = event.get()
+
+        # TEMPORARY SYSTEM
+        for evnt in eventList:
+            if evnt.type == QUIT:
+                isGameRunning = False
 
     quit()
