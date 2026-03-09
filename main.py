@@ -8,6 +8,87 @@ variableVariable : use camel case
 argumentargument : use lower case
 function_function : use snake case
 """
+def deg_to_rad(t):
+    return t*math.pi/180
+def natural_angle(vec):
+    return deg_to_rad(pygame.Vector2(1,0).angle_to(vec))
+
+class ArcStatic(pygame.Rect):
+    def __init__(self,rect,start_deg,end_deg):
+        super().__init__(rect)
+        self.startAngle = start_deg
+        self.endAngle = end_deg
+        self.vecCenter = pygame.Vector2(self.center)
+        self.halfsize = pygame.Vector2(self.size)/2
+        self.startPoint = pygame.Vector2(round(self.halfsize.x*math.cos(start_deg),5),  round(self.halfsize.y*math.sin(start_deg),5)) + self.vecCenter
+        self.endPoint = pygame.Vector2(round(self.halfsize.x*math.cos(end_deg),5),  round(self.halfsize.y*math.sin(end_deg),5)) + self.vecCenter
+        self.radius = lambda alpha : round(math.sqrt((self.halfsize.x*math.cos(alpha))**2 + (self.halfsize.y*math.sin(alpha))**2),5)
+        self.norm = lambda point : (self.vecCenter - point).normalize()
+        self.startBracket = self.norm(self.startPoint).rotate(-90)
+        self.endBracket = self.norm(self.endPoint).rotate(90)
+
+    def proximity(self, point) -> float:
+        studiedPoint = pygame.Vector2(point)-self.vecCenter
+        return self.radius(natural_angle(studiedPoint))-studiedPoint.length()
+
+    def detection_area(self, point) -> bool:
+        studiedPoint = pygame.Vector2(point)
+        return self.startBracket.dot(studiedPoint-self.startPoint)>0 and self.endBracket.dot(studiedPoint-self.endPoint)>0
+
+    def normal(self,vec,point=(0,0)) -> pygame.Vector2:
+        studiedPoint = pygame.Vector2(point)
+        return -vec.project(self.norm(studiedPoint))
+
+    def render(self,surface) -> pygame.Rect:
+        return pygame.draw.arc(surface,(255,255,255),self,-self.endAngle,-self.startAngle)
+
+    def render_debug(self, surface) -> pygame.Rect:
+        return pygame.draw.line(surface, (255, 255, 255), self.startPoint, self.endPoint)
+
+class LineStatic(pygame.Rect):
+    def __init__(self,start_point,end_point) -> None:
+        self.startPoint = pygame.Vector2(start_point)
+        self.endPoint = pygame.Vector2(end_point)
+        lowcorner = pygame.Vector2(min(self.startPoint.x,self.endPoint.x),min(self.startPoint.y,self.endPoint.y))
+        highcorner = pygame.Vector2(max(self.startPoint.x, self.endPoint.x), max(self.startPoint.y, self.endPoint.y))
+        super().__init__(lowcorner,highcorner-lowcorner)
+        self.startBracket = (self.endPoint-self.startPoint).normalize()
+        self.endBracket = (self.startPoint - self.endPoint).normalize()
+        self.norm = self.startBracket.rotate_rad(math.pi/2)
+
+    def proximity(self,point) -> float:
+        studiedPoint = pygame.Vector2(point)-self.startPoint
+        return self.norm.dot(studiedPoint)
+
+    def detection_area(self, point) -> bool:
+        studiedPoint = pygame.Vector2(point)
+        return self.startBracket.dot(studiedPoint - self.startPoint) > 0 and self.endBracket.dot(studiedPoint - self.endPoint) > 0
+
+    def normal(self,vec,point=None) -> pygame.Vector2:
+        return -vec.project(self.norm)
+
+    def render(self,surface) -> pygame.Rect:
+        return pygame.draw.line(surface,(255,255,255),self.startPoint,self.endPoint)
+
+class DiscBody:
+    def __init__(self,radius,initial_pos=(0,0),initial_vel=(0,0)) -> None:
+        self.radius = radius
+        self.pos = pygame.Vector2(initial_pos)
+        self.velocity = pygame.Vector2(initial_vel)
+
+    def render(self,surface) -> pygame.Rect:
+        return pygame.draw.circle(surface, (255,255,255), self.pos, self.radius)
+
+    def static_collision_phy(self,dt,grav,res,fri,traces) -> None:
+        self.velocity += grav * dt
+        self.velocity = self.velocity * res
+        preshotPos = peg.pos + self.velocity * dt
+        for trace in traces:
+            distance = trace.proximity(preshotPos)
+            if abs(distance) < self.radius and trace.detection_area(preshotPos):
+                self.velocity += trace.normal(self.velocity, preshotPos)
+                self.velocity = self.velocity * fri
+        self.pos += self.velocity * dt
 
 if __name__ == '__main__':
     pygame.init()
@@ -26,27 +107,14 @@ if __name__ == '__main__':
     dt : float
 
     # GAME ELEMENTS
-    PPM = 10 #pixel per meter
-    GRAVITY = pygame.Vector2(0,9.81) * PPM
-    AIRRESISTANCE = 0.99999
+    GRAVITY = pygame.Vector2(0,9.81) * 10
+    AIRRESISTANCE = 1 - 0.00001
+    GROUNDFRICTION = 1 - 0.0002
 
-    CURVECENTER = pygame.Vector2(90,70)
-    CURVERADIUS = 100
-    CURVEBOUNCINESS = 0
-    CURVEPOS = [CURVECENTER+CURVERADIUS*pygame.Vector2(1,0).rotate(180),CURVECENTER+CURVERADIUS*pygame.Vector2(1,0).rotate(60)]
-    CURVESEG = [(CURVECENTER-CURVEPOS[0]).rotate(90),(CURVECENTER-CURVEPOS[1]).rotate(-90)]
+    testArc = ArcStatic(pygame.Rect(0,0,200,200),deg_to_rad(60),deg_to_rad(180))
+    testLine = LineStatic((100,250),(400,200))
 
-    LINEPOS = [pygame.Vector2(100,250),pygame.Vector2(400,200)]
-    LINESEG = [LINEPOS[1]-LINEPOS[0],LINEPOS[0]-LINEPOS[1]]
-
-    pegRadius = 5
-    pegImg = pygame.Surface((10,10),pygame.SRCALPHA)
-    pygame.draw.circle(pegImg,(255,0,0),(5,5),5)
-    pegPos = pygame.Vector2(50,0)
-    pegVelocity = pygame.Vector2(0,0)
-
-    # ORIGIN ACTION
-    pegVelocity += pygame.Vector2(0,0)
+    peg = DiscBody(10,(50,0))
 
     # GAME LOOP
     while isGameRunning:
@@ -61,36 +129,15 @@ if __name__ == '__main__':
             if evnt.type == pygame.KEYDOWN:
                 if evnt.key == pygame.K_SPACE:
                     isPhysicActive = not isPhysicActive
-                    print(CURVEPOS)
-
 
         # PHYSIC
         if isPhysicActive:
-            # NATURAL FORCES
-            pegVelocity += GRAVITY*dt
-            pegVelocity = pegVelocity * AIRRESISTANCE
-            # COLLISION FORCES
-            # CURVE PART
-            diff = CURVECENTER-(pegPos+pegVelocity*dt)
-            distance = CURVERADIUS-diff.length()
-            if abs(distance)<pegRadius and CURVESEG[0].dot(pegPos-CURVEPOS[0])>0 and CURVESEG[1].dot(pegPos-CURVEPOS[1])>0 :
-                normal = diff.normalize().rotate(90)
-                pegVelocity = normal*normal.dot(pegVelocity)
-            # LINE PART
+            peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,[testArc,testLine])
 
-            normal = LINESEG[0].normalize().rotate(-90)
-            distance = normal.dot(pegPos-LINEPOS[0]+pegVelocity*dt)
-            if abs(distance)<pegRadius and LINESEG[0].dot(pegPos-LINEPOS[0])>0 and LINESEG[1].dot(pegPos-LINEPOS[1])>0 :
-                pegVelocity += normal*normal.dot(-pegVelocity)
+        rectClearanceList.append(peg.render(SCREEN))
+        rectClearanceList.append(testArc.render(SCREEN))
+        rectClearanceList.append(testLine.render(SCREEN))
 
-            # UPDATE POS
-            pegPos += pegVelocity * dt
-
-
-        rectClearanceList.append(pygame.draw.circle(SCREEN,(0,255,0),CURVECENTER,CURVERADIUS))
-        rectClearanceList.append(SCREEN.blit(pegImg,pegPos-pygame.Vector2(5,5)))
-        rectClearanceList.append(pygame.draw.arc(SCREEN,(255,255,255),pygame.Rect(CURVECENTER-CURVERADIUS*pygame.Vector2(1,1),CURVERADIUS*pygame.Vector2(2,2)),math.pi,-math.pi/3,2))
-        rectClearanceList.append(pygame.draw.line(SCREEN,(255,255,255),LINEPOS[0],LINEPOS[1],2))
         pygame.display.update(rectClearanceList+lateClearanceList)
         for rect in rectClearanceList:
             SCREEN.fill((0,0,0),rect)

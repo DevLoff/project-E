@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="curve collision (almost?) done">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="line collision done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -112,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773060622796</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="line collision done">
+      <option name="closed" value="true" />
+      <created>1773062697692</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773062697692</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -121,6 +129,7 @@
     <MESSAGE value="portable pygame ?" />
     <MESSAGE value="step1 stage handling v01" />
     <MESSAGE value="curve collision (almost?) done" />
-    <option name="LAST_COMMIT_MESSAGE" value="curve collision (almost?) done" />
+    <MESSAGE value="line collision done" />
+    <option name="LAST_COMMIT_MESSAGE" value="line collision done" />
   </component>
 </project>
