@@ -12,10 +12,32 @@ def deg_to_rad(t):
     return t*math.pi/180
 def natural_angle(vec):
     return deg_to_rad(pygame.Vector2(1,0).angle_to(vec))
+def tripoint_arc_interpretation(center,p1,p2):
+    fcenter,fp1,fp2 = pygame.Vector2(center),pygame.Vector2(p1),pygame.Vector2(p2)
+    clc1,clc2 = fp1-fcenter,fp2-fcenter
+    radius = clc1.length()
+    rectRad = radius*pygame.Vector2(1,1)
+    return ArcStatic(pygame.Rect(fcenter-rectRad,rectRad*2),natural_angle(clc1),natural_angle(clc2))
+
+def format_str_to_obj(elements):
+    if elements[0]=='a':
+        frect = [float(n) for n in elements[1].split(',')]
+        a1,a2 = deg_to_rad(float(elements[2])),deg_to_rad(float(elements[3]))
+        return ArcStatic(frect,a1,a2)
+    if elements[0]=='t':
+        pts = [[float(n) for n in elements[i+1].split(',')] for i in range(3)]
+        return tripoint_arc_interpretation(pts[0],pts[1],pts[2])
+    if elements[0]=='l':
+        p1,p2 = [float(n) for n in elements[1].split(',')],[float(n) for n in elements[2].split(',')]
+        return LineStatic(p1,p2)
+    return None
+def level_read(data):
+    return [format_str_to_obj(line.strip().split(';')) for line in data]
+
 
 class ArcStatic(pygame.Rect):
     def __init__(self,rect,start_deg,end_deg):
-        super().__init__(rect)
+        super().__init__(pygame.Rect(rect))
         self.startAngle = start_deg
         self.endAngle = end_deg
         self.vecCenter = pygame.Vector2(self.center)
@@ -111,9 +133,7 @@ if __name__ == '__main__':
     AIRRESISTANCE = 1 - 0.00001
     GROUNDFRICTION = 1 - 0.0002
 
-    testArc = ArcStatic(pygame.Rect(0,0,200,200),deg_to_rad(60),deg_to_rad(180))
-    testLine = LineStatic((100,250),(400,200))
-
+    level = level_read(open("level.txt","r").readlines())
     peg = DiscBody(10,(50,0))
 
     # GAME LOOP
@@ -132,11 +152,11 @@ if __name__ == '__main__':
 
         # PHYSIC
         if isPhysicActive:
-            peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,[testArc,testLine])
+            peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
 
         rectClearanceList.append(peg.render(SCREEN))
-        rectClearanceList.append(testArc.render(SCREEN))
-        rectClearanceList.append(testLine.render(SCREEN))
+        for elt in level:
+            rectClearanceList.append(elt.render(SCREEN))
 
         pygame.display.update(rectClearanceList+lateClearanceList)
         for rect in rectClearanceList:

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="line collision done">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="clean previous code for better readability">
+      <change afterPath="$PROJECT_DIR$/level.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -120,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773062697692</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="clean previous code for better readability">
+      <option name="closed" value="true" />
+      <created>1773086106729</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773086106729</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,6 +139,7 @@
     <MESSAGE value="step1 stage handling v01" />
     <MESSAGE value="curve collision (almost?) done" />
     <MESSAGE value="line collision done" />
-    <option name="LAST_COMMIT_MESSAGE" value="line collision done" />
+    <MESSAGE value="clean previous code for better readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean previous code for better readability" />
   </component>
 </project>
