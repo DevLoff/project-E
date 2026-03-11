@@ -73,6 +73,7 @@ class ArcStatic:
         self.endPoint = pygame.Vector2(round(self.halfsize.x*math.cos(end_deg),5),  round(self.halfsize.y*math.sin(end_deg),5)) + self.vecCenter
         self.radius = lambda alpha : round(math.sqrt((self.halfsize.x*math.cos(alpha))**2 + (self.halfsize.y*math.sin(alpha))**2),5)
         self.norm = lambda point : (self.vecCenter - point).normalize()
+        self.acute = abs(end_deg - start_deg) < math.pi
         self.startBracket = self.norm(self.startPoint).rotate(-90)
         self.endBracket = self.norm(self.endPoint).rotate(90)
 
@@ -89,6 +90,7 @@ class ArcStatic:
         self.radius = lambda alpha: round(
             math.sqrt((self.halfsize.x * math.cos(alpha)) ** 2 + (self.halfsize.y * math.sin(alpha)) ** 2), 5)
         self.norm = lambda point: (self.vecCenter - point).normalize()
+        self.acute = abs(end_deg-start_deg)<math.pi
         self.startBracket = self.norm(self.startPoint).rotate(-90)
         self.endBracket = self.norm(self.endPoint).rotate(90)
 
@@ -98,7 +100,7 @@ class ArcStatic:
 
     def detection_area(self, point) -> bool:
         studiedPoint = pygame.Vector2(point)
-        return self.startBracket.dot(studiedPoint-self.startPoint)>0 and self.endBracket.dot(studiedPoint-self.endPoint)>0
+        return ((self.startBracket.dot(studiedPoint-self.startPoint)>0) + (self.endBracket.dot(studiedPoint-self.endPoint)>0)) >= 1 + self.acute
 
     def normal(self,vec,point=(0,0)) -> pygame.Vector2:
         studiedPoint = pygame.Vector2(point)
@@ -158,11 +160,11 @@ class DiscBody:
     def static_collision_phy(self,dt,grav,res,fri,traces) -> None:
         self.velocity += grav * dt
         self.velocity = self.velocity * res
-        preshotPos = peg.pos + self.velocity * dt
+        preshotPos = self.pos + self.velocity * dt
         for trace in traces:
             distance = trace.proximity(preshotPos)
             if abs(distance) < self.radius and trace.detection_area(preshotPos):
-                self.velocity += trace.normal(self.velocity, preshotPos) * (1 + self.bounciness)
+                self.velocity += trace.normal(self.velocity, self.pos) * (1 + self.bounciness)
                 self.velocity = self.velocity * fri
         self.pos += self.velocity * dt
 
@@ -196,7 +198,7 @@ if __name__ == '__main__':
     THROWFORCE = 0.8
 
     level = level_read(open("level.txt","r").readlines())
-    peg = DiscBody(10,(50,0),(0,0),1)
+    peg = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.4)
 
     # GAME LOOP
     while isGameRunning:
@@ -208,9 +210,9 @@ if __name__ == '__main__':
         for evnt in eventList:
             if evnt.type == pygame.QUIT:
                 isGameRunning = False
-            if evnt.type == pygame.KEYDOWN:
+            elif evnt.type == pygame.KEYDOWN:
                 inputString = devmode(evnt,inputString,editorDict)
-            if evnt.type == pygame.MOUSEBUTTONDOWN:
+            elif evnt.type == pygame.MOUSEBUTTONDOWN and not isPhysicActive:
                 studiedPos = pygame.Vector2(evnt.pos)
                 peg.velocity += (studiedPos - peg.pos) * THROWFORCE
                 isPhysicActive = True
@@ -218,6 +220,9 @@ if __name__ == '__main__':
         # PHYSIC
         if isPhysicActive:
             peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
+            if peg.pos.y > SCREEN_HEIGHT:
+                isPhysicActive = False
+                peg = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.4)
 
         rectClearanceList.append(peg.render(SCREEN))
         for elt in level:
@@ -225,6 +230,7 @@ if __name__ == '__main__':
 
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(editorDict["state"], True, (255, 255, 255)), (0, 0)))
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(inputString,True,(255,255,255)),(0,20)))
+        rectClearanceList.append(SCREEN.blit(GAMEFONT.render(str(peg.velocity), True, (255, 255, 255)), (0, 40)))
 
         pygame.display.update(rectClearanceList+lateClearanceList)
         for rect in rectClearanceList:
