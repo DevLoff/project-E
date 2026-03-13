@@ -166,6 +166,9 @@ class DiscBody:
         self.velocity = pygame.Vector2(initial_vel)
         self.bounciness = bounce
 
+    def copy(self):
+        return DiscBody(self.radius,self.pos.copy(),self.velocity.copy(),self.bounciness)
+
     def render(self,surface) -> pygame.Rect:
         return pygame.draw.circle(surface, (255,255,255), self.pos, self.radius)
 
@@ -189,6 +192,7 @@ if __name__ == '__main__':
     # CONSTANTS
     SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
     SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    STATIC_BG = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     CLOCK = pygame.time.Clock()
     GAMEFONT = pygame.font.SysFont("comicsansms",20)
 
@@ -214,11 +218,20 @@ if __name__ == '__main__':
 
     level = level_read(open("level.txt","r").readlines())
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.1)
-    peg = TEMPLATE
+    peg = TEMPLATE.copy()
     hydratation = [[0,0]]
     watering = []
     surf = 100.0
     SPLASH = 2.0
+
+    visualPos = TEMPLATE.pos.copy()
+    visualVel = pygame.Vector2()
+
+    # VISUAL INITALISATION
+    for elt in level:
+        rectClearanceList.append(elt.render(STATIC_BG))
+    SCREEN.blit(STATIC_BG,(0,0))
+    pygame.display.flip()
 
     # GAME LOOP
     while isGameRunning:
@@ -242,19 +255,26 @@ if __name__ == '__main__':
             surf = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
             if peg.pos.y > SCREEN_HEIGHT:
                 isPhysicActive = False
-                peg = TEMPLATE
+                peg = TEMPLATE.copy()
+
+        else:
+            visualPos = peg.pos.copy()
+            visualVel = pygame.Vector2(pygame.mouse.get_pos()) - visualPos
+            for i in range(4):
+                visualVel += GRAVITY * 0.2
+                visualVel *= AIRRESISTANCE
+                visualPos += visualVel * 0.2
+                rectClearanceList.append(pygame.draw.circle(SCREEN,(255,255,255),visualPos,5))
 
         rectClearanceList.append(peg.render(SCREEN))
-        for elt in level:
-            rectClearanceList.append(elt.render(SCREEN))
 
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(editorDict["state"], True, (255, 255, 255)), (0, 0)))
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(inputString,True,(255,255,255)),(0,20)))
-        rectClearanceList.append(SCREEN.blit(GAMEFONT.render(str(surf<12.0), True, (255, 255, 255)), (0, 40)))
+        rectClearanceList.append(SCREEN.blit(GAMEFONT.render(str(pygame.mouse.get_pos()), True, (255, 255, 255)), (0, 40)))
 
         pygame.display.update(rectClearanceList+lateClearanceList)
         for rect in rectClearanceList:
-            SCREEN.fill((0,0,0),rect)
+            SCREEN.blit(STATIC_BG.subsurface(rect), rect.topleft)
         lateClearanceList = rectClearanceList.copy()
         rectClearanceList.clear()
 
