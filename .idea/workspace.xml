@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="small opti">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="level 01 v02">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/level.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -161,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773389895477</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="level 01 v02">
+      <option name="closed" value="true" />
+      <created>1773391907459</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1773391907459</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,6 +185,7 @@
     <MESSAGE value="added new dev tools and options to the physic" />
     <MESSAGE value="build of level 1 v01" />
     <MESSAGE value="small opti" />
-    <option name="LAST_COMMIT_MESSAGE" value="small opti" />
+    <MESSAGE value="level 01 v02" />
+    <option name="LAST_COMMIT_MESSAGE" value="level 01 v02" />
   </component>
 </project>

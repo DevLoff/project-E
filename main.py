@@ -228,8 +228,9 @@ if __name__ == '__main__':
     visualVel = pygame.Vector2()
 
     # VISUAL INITALISATION
+    STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/im.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
     for elt in level:
-        rectClearanceList.append(elt.render(STATIC_BG))
+        elt.render(STATIC_BG)
     SCREEN.blit(STATIC_BG,(0,0))
     pygame.display.flip()
 
