@@ -8,6 +8,10 @@ variableVariable : use camel case
 argumentargument : use lower case
 function_function : use snake case
 """
+def enlarge_range(origin,new):
+    return [min(origin[0],new[0]),max(origin[1],new[1])]
+def intersect(l1,l2):
+    return (l1[0]<l2[1])==(l2[0]<l1[1])
 def deg_to_rad(t):
     return t*math.pi/180
 def natural_angle(vec):
@@ -50,6 +54,9 @@ def devmode(evnt,entry,toolkit):
             if type(toolkit["selected"]) == ArcStatic and changes.count(';') == 2:
                 dull = format_str_to_obj('a;' + changes)
                 toolkit["selected"].update(dull.area, dull.startAngle, dull.endAngle)
+            if type(toolkit["selected"]) == LineStatic and changes.count(';') == 1:
+                dull = format_str_to_obj('l;' + changes)
+                toolkit["selected"].update(dull.startPoint, dull.endPoint)
     if evnt.key == pygame.K_BACKSPACE:
         entry = entry[:-1]
     if evnt.key == pygame.K_ESCAPE:
@@ -72,10 +79,15 @@ class ArcStatic:
         self.startPoint = pygame.Vector2(round(self.halfsize.x*math.cos(start_deg),5),  round(self.halfsize.y*math.sin(start_deg),5)) + self.vecCenter
         self.endPoint = pygame.Vector2(round(self.halfsize.x*math.cos(end_deg),5),  round(self.halfsize.y*math.sin(end_deg),5)) + self.vecCenter
         self.radius = lambda alpha : round(math.sqrt((self.halfsize.x*math.cos(alpha))**2 + (self.halfsize.y*math.sin(alpha))**2),5)
-        self.norm = lambda point : (self.vecCenter - point).normalize()
         self.acute = abs(end_deg - start_deg) < math.pi
         self.startBracket = self.norm(self.startPoint).rotate(-90)
         self.endBracket = self.norm(self.endPoint).rotate(90)
+
+    def norm(self,point) -> pygame.Vector2:
+        trace = (self.vecCenter - point)
+        if trace != pygame.Vector2():
+            return trace.normalize()
+        return trace
 
     def update(self,rectangle,start_deg,end_deg):
         self.area = pygame.Rect(rectangle)
@@ -157,16 +169,19 @@ class DiscBody:
     def render(self,surface) -> pygame.Rect:
         return pygame.draw.circle(surface, (255,255,255), self.pos, self.radius)
 
-    def static_collision_phy(self,dt,grav,res,fri,traces) -> None:
+    def static_collision_phy(self,dt,grav,res,fri,traces):
+        prox = 100.0
         self.velocity += grav * dt
         self.velocity = self.velocity * res
         preshotPos = self.pos + self.velocity * dt
         for trace in traces:
             distance = trace.proximity(preshotPos)
+            prox = min(prox,abs(distance))
             if abs(distance) < self.radius and trace.detection_area(preshotPos):
                 self.velocity += trace.normal(self.velocity, self.pos) * (1 + self.bounciness)
                 self.velocity = self.velocity * fri
         self.pos += self.velocity * dt
+        return prox
 
 if __name__ == '__main__':
     pygame.init()
@@ -198,7 +213,12 @@ if __name__ == '__main__':
     THROWFORCE = 0.8
 
     level = level_read(open("level.txt","r").readlines())
-    peg = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.4)
+    TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.1)
+    peg = TEMPLATE
+    hydratation = [[0,0]]
+    watering = []
+    surf = 100.0
+    SPLASH = 2.0
 
     # GAME LOOP
     while isGameRunning:
@@ -219,10 +239,10 @@ if __name__ == '__main__':
 
         # PHYSIC
         if isPhysicActive:
-            peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
+            surf = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
             if peg.pos.y > SCREEN_HEIGHT:
                 isPhysicActive = False
-                peg = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.4)
+                peg = TEMPLATE
 
         rectClearanceList.append(peg.render(SCREEN))
         for elt in level:
@@ -230,7 +250,7 @@ if __name__ == '__main__':
 
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(editorDict["state"], True, (255, 255, 255)), (0, 0)))
         rectClearanceList.append(SCREEN.blit(GAMEFONT.render(inputString,True,(255,255,255)),(0,20)))
-        rectClearanceList.append(SCREEN.blit(GAMEFONT.render(str(peg.velocity), True, (255, 255, 255)), (0, 40)))
+        rectClearanceList.append(SCREEN.blit(GAMEFONT.render(str(surf<12.0), True, (255, 255, 255)), (0, 40)))
 
         pygame.display.update(rectClearanceList+lateClearanceList)
         for rect in rectClearanceList:

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="added new dev tools and options to the physic">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="build of level 1 v01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/level.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,6 +166,7 @@
     <MESSAGE value="abstraction of level data" />
     <MESSAGE value="added tool for game design" />
     <MESSAGE value="added new dev tools and options to the physic" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new dev tools and options to the physic" />
+    <MESSAGE value="build of level 1 v01" />
+    <option name="LAST_COMMIT_MESSAGE" value="build of level 1 v01" />
   </component>
 </project>
