@@ -1,14 +1,23 @@
-from pygame import Surface,Vector2
+from physic_utils import *
 
-class StageHandler():
-    def __init__(self):
-        self.currentStage : dict
+class DisplayHandler:
+    def __init__(self, bg):
+        self.screen = pygame.display.get_surface()
+        self.bg = bg
+        self.screen.blit(self.bg,(0,0))
+        pygame.display.flip()
+        self.earlyClears = []
+        self.lateClears = []
 
-    def update(self) -> None:
-        pass
+    def cycle(self):
+        pygame.display.update(self.earlyClears + self.lateClears)
+        for area in self.earlyClears:
+            self.screen.blit(self.bg.subsurface(area), area.topleft)
+        self.lateClears = self.earlyClears.copy()
+        self.earlyClears.clear()
 
-    def execute(self) -> None:
-        pass
+    def add_area(self, area):
+        self.earlyClears.append(area)
 
-    def render(self) -> Surface:
-        return Surface(Vector2()) #temporary
+    def dynamic_blit(self, surface, dest):
+        self.add_area(self.screen.blit(surface, dest))
