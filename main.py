@@ -45,8 +45,13 @@ if __name__ == '__main__':
     CLOCK = pygame.time.Clock()
     GAMEFONT = pygame.font.SysFont("comicsansms",20)
 
+    # META SETUP
+    pygame.display.set_caption("Tears of Sky")
+    pygame.display.set_icon(pygame.image.load("Images/logo.png"))
+
     # VARIABLES
     isGameRunning = True
+    isLevelRunning = True
     isPhysicActive = False
     isPegLunched = False
     eventList : list
@@ -61,13 +66,13 @@ if __name__ == '__main__':
 
     level = level_read(open("level.txt","r").readlines())
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.1)
-    peg = TEMPLATE.copy()
+    bench = [TEMPLATE.copy() for _ in range(5)]
+    peg = bench.pop()
     distance = 100.0
     closestObj = None
 
     REACTION_RANGE = TEMPLATE.radius + 5
     IMPACTSPLASH = 10
-    print(REACTION_RANGE)
     fPos = -1
     lPos = -1
     surfTile = -1
@@ -80,14 +85,17 @@ if __name__ == '__main__':
 
     # DEBUG MODE
     isDebugModeOn = True
+    isDebugBGOn = False
     monitoredData = {
         "saturation":satTile,
+        "tt water":0,
         "dist": 0,
-        "tag": 0
+        "tag": 0,
+        "attempt left":len(bench),
     }
 
     # VISUAL INITALISATION
-    STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/im.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
+    STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/bg_01_v01.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
     dHandler = DisplayHandler(STATIC_BG)
 
     # GAME LOOP
@@ -101,12 +109,21 @@ if __name__ == '__main__':
             if evnt.type == pygame.QUIT:
                 isGameRunning = False
             elif evnt.type == pygame.KEYDOWN:
+                if evnt.key == pygame.K_ESCAPE:
+                    isGameRunning = False
                 if evnt.key == pygame.K_SPACE:
                     isPhysicActive = not isPhysicActive
-                if evnt.key == pygame.K_F6:
+                if evnt.key == pygame.K_F1:
                     isDebugModeOn = not isDebugModeOn
+                if evnt.key == pygame.K_F2 and isDebugModeOn:
+                    isDebugBGOn = not isDebugBGOn
+                if evnt.key == pygame.K_F3 and isDebugModeOn:
+                    isPegLunched = False
+                    isPhysicActive = False
+                    peg = TEMPLATE.copy()
+                    isLevelRunning = True
             elif evnt.type == pygame.MOUSEBUTTONDOWN:
-                if not isPegLunched:
+                if not isPegLunched and isLevelRunning:
                     studiedPos = pygame.Vector2(evnt.pos)
                     peg.velocity += (studiedPos - peg.pos) * THROWFORCE
                     isPegLunched = True
@@ -117,9 +134,15 @@ if __name__ == '__main__':
             distance,closestObj = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
             monitoredData["dist"],monitoredData["tag"] = distance,closestObj
             if peg.pos.y > SCREEN_HEIGHT:
-                isPegLunched = False
-                isPhysicActive = False
-                peg = TEMPLATE.copy()
+                if len(bench)>0:
+                    isPegLunched = False
+                    isPhysicActive = False
+                    peg = bench.pop()
+                    monitoredData["attempt left"] -= 1
+                else:
+                    isLevelRunning = False
+                    isPegLunched = False
+                    isPhysicActive = False
             if distance < REACTION_RANGE:
                 if fPos == -1:
                     fPos,lPos,surfTile = peg.pos.x,peg.pos.x,int(peg.pos.x // TILESIZE)
@@ -133,7 +156,9 @@ if __name__ == '__main__':
                 satTile[int(peg.pos.x // TILESIZE)] += max(IMPACTSPLASH,abs(lPos - fPos))
                 fPos, lPos, surfTile = -1,-1,-1
 
-        if not isPegLunched:
+        monitoredData["tt water"] = sum(satTile)
+
+        if not isPegLunched and isLevelRunning:
             visualPos = peg.pos.copy()
             visualVel = pygame.Vector2(pygame.mouse.get_pos()) - visualPos
             for i in range(4):
@@ -144,6 +169,8 @@ if __name__ == '__main__':
 
         # DEBUG LAYER
         if isDebugModeOn:
+            if isDebugBGOn:
+                dHandler.add_area(SCREEN.fill((0,0,0)))
             align = 0
             for data in monitoredData:
                 dHandler.dynamic_blit(GAMEFONT.render(f"{data} : {monitoredData[data]}",True,(255,255,255)),(0,20*align))
