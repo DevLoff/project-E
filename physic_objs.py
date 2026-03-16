@@ -113,17 +113,63 @@ class DiscBody:
         return pygame.draw.circle(surface, (255,255,255), self.pos, self.radius)
 
     def static_collision_phy(self,dt,grav,res,fri,traces):
-        prox,close = 100.0,None
-        self.velocity += grav * dt
-        self.velocity = self.velocity * res
-        preshotPos = self.pos + self.velocity * dt
+        collided,difference,overshot = False,0,0
+        self.velocity = (self.velocity + grav * dt) * res
+        after = self.pos.copy() + self.velocity.copy() * dt
         for trace in traces:
-            distance = trace.proximity(preshotPos)
-            if abs(distance) < self.radius and trace.detection_area(preshotPos):
-                self.velocity += trace.normal(self.velocity, self.pos) * (1 + self.bounciness)
-                self.velocity = self.velocity * fri
-                prox = min(prox, abs(distance))
-                if abs(distance) == prox:
-                    close = traces.index(trace)
+            difference,overshot = trace.proximity(self.pos),trace.proximity(after)
+            if difference * overshot < 0.0:
+                overshot = difference - overshot
+            if abs(overshot) < self.radius and trace.detection_area(after):
+                normalForce = trace.normal(after) * (self.radius/overshot)
+                self.velocity = self.velocity.project(normalForce.rotate(90))
+                self.pos += normalForce
+                collided = True
+        if collided:
+            self.velocity *= fri
         self.pos += self.velocity * dt
-        return prox,close
+        return collided,difference,overshot
+
+# WIP SECTION
+
+class ProtoArc(StaticObj):
+    def __init__(self,center,fpoint,spoint) -> None:
+        self.vecCenter = pygame.Vector2(center)
+        self.startPoint = pygame.Vector2(fpoint)
+        self.endPoint = pygame.Vector2(spoint)
+        self.rotMat = (self.startPoint-self.vecCenter,self.endPoint-self.vecCenter)
+        self.startAngle = natural_angle(self.rotMat[0])
+        self.endAngle = natural_angle(self.rotMat[1])
+        self.acute = abs(self.endAngle - self.startAngle) < math.pi
+        self.startBracket = self.norm(self.startPoint).rotate(90)
+        self.endBracket = self.norm(self.endPoint).rotate(-90)
+        print(self.startBracket,self.endBracket)
+
+    def morphism(self,vec):
+        return pygame.Vector2(self.rotMat[0].x*vec.x + self.rotMat[1].x*vec.y,
+                                  self.rotMat[0].y*vec.x + self.rotMat[1].y*vec.y)
+
+    def radius(self,alpha):
+        studiedPoint = pygame.Vector2(math.cos(alpha),math.sin(alpha))
+        morphose = self.morphism(studiedPoint)
+        return morphose.length()
+
+    def norm(self,point) -> pygame.Vector2:
+        return self.morphism(radial_vec(1,natural_angle(pygame.Vector2(point)-self.vecCenter))).normalize()
+
+    def proximity(self, point) -> float:
+        studiedPoint = pygame.Vector2(point)-self.vecCenter
+        return studiedPoint.length()-self.radius(natural_angle(studiedPoint))
+
+    def detection_area(self, point) -> bool:
+        studiedPoint = pygame.Vector2(point)
+        return ((self.startBracket.dot(studiedPoint-self.startPoint)>0) + (self.endBracket.dot(studiedPoint-self.endPoint)>0)) >= 1 + self.acute
+
+    def normal(self,point) -> pygame.Vector2:
+        return self.norm(point)
+
+    def render(self,surface) -> pygame.Rect:
+        return pygame.draw.lines(surface,(255,255,255),True,[self.vecCenter,self.startPoint,self.endPoint],2)
+
+    def render_debug(self, surface) -> pygame.Rect:
+        return pygame.draw.line(surface, (255, 255, 255), self.startPoint, self.endPoint)

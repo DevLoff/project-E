@@ -64,8 +64,8 @@ if __name__ == '__main__':
     GROUNDFRICTION = 1 - 0.0002
     THROWFORCE = 0.8
 
-    level = level_read(open("level.txt","r").readlines())
-    TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0.1)
+    level = [ProtoArc((0,0),(800,0),(0,600))] # level_read(open("level.txt","r").readlines()) +
+    TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
     bench = [TEMPLATE.copy() for _ in range(5)]
     peg = bench.pop()
     distance = 100.0
@@ -80,6 +80,7 @@ if __name__ == '__main__':
     TILESIZE = 50
     satTile = [0]*(SCREEN_WIDTH//TILESIZE)
 
+    kickstartVel = pygame.Vector2(0,1)
     visualPos = TEMPLATE.pos.copy()
     visualVel = pygame.Vector2()
 
@@ -89,7 +90,7 @@ if __name__ == '__main__':
     monitoredData = {
         "saturation":satTile,
         "tt water":0,
-        "dist": 0,
+        "dist": 100,
         "tag": 0,
         "attempt left":len(bench),
     }
@@ -103,6 +104,7 @@ if __name__ == '__main__':
         # EVENT HANDLER
         dt = CLOCK.tick()/1000
         eventList = pygame.event.get()
+        monitoredData["check"] = level[0].radius(natural_angle(peg.pos))
 
         # TEMPORARY SYSTEM
         for evnt in eventList:
@@ -124,15 +126,13 @@ if __name__ == '__main__':
                     isLevelRunning = True
             elif evnt.type == pygame.MOUSEBUTTONDOWN:
                 if not isPegLunched and isLevelRunning:
-                    studiedPos = pygame.Vector2(evnt.pos)
-                    peg.velocity += (studiedPos - peg.pos) * THROWFORCE
+                    peg.velocity += kickstartVel
                     isPegLunched = True
                     isPhysicActive = True
 
         # PHYSIC
         if isPhysicActive:
-            distance,closestObj = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
-            monitoredData["dist"],monitoredData["tag"] = distance,closestObj
+            inContact,monitoredData["diff"],monitoredData["over"] = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
             if peg.pos.y > SCREEN_HEIGHT:
                 if len(bench)>0:
                     isPegLunched = False
@@ -143,7 +143,7 @@ if __name__ == '__main__':
                     isLevelRunning = False
                     isPegLunched = False
                     isPhysicActive = False
-            if distance < REACTION_RANGE:
+            if inContact:
                 if fPos == -1:
                     fPos,lPos,surfTile = peg.pos.x,peg.pos.x,int(peg.pos.x // TILESIZE)
                 else:
@@ -159,13 +159,16 @@ if __name__ == '__main__':
         monitoredData["tt water"] = sum(satTile)
 
         if not isPegLunched and isLevelRunning:
+            kickstartVel = pygame.Vector2(pygame.mouse.get_pos()) - peg.pos
             visualPos = peg.pos.copy()
-            visualVel = pygame.Vector2(pygame.mouse.get_pos()) - visualPos
+            visualVel = pygame.Vector2(kickstartVel)
             for i in range(4):
                 visualVel += GRAVITY * 0.2
                 visualVel *= AIRRESISTANCE
                 visualPos += visualVel * 0.2
                 dHandler.add_area(pygame.draw.circle(SCREEN,(255,255,255),visualPos,5))
+
+        monitoredData["inside"] = level[0].detection_area(peg.pos)
 
         # DEBUG LAYER
         if isDebugModeOn:
@@ -180,8 +183,13 @@ if __name__ == '__main__':
                 tPlace = pygame.Rect(TILESIZE * i, SCREEN_HEIGHT - TILESIZE, TILESIZE, TILESIZE)
                 dHandler.add_area(pygame.draw.rect(SCREEN, tCol, tPlace))
             dHandler.add_area(peg.render(SCREEN))
+            dHandler.add_area(pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity))
+            if closestObj is not None:
+                dHandler.add_area(pygame.draw.line(SCREEN, (255, 0, 0), peg.pos, peg.pos + closestObj))
             for elt in level:
                 dHandler.add_area(elt.render(SCREEN))
+            dHandler.add_area(pygame.draw.lines(SCREEN,(255,255,255),False,
+                                                [radial_vec(level[0].radius(k * math.pi/180),k * math.pi/180) for k in range(90)]))
 
         dHandler.cycle()
 
