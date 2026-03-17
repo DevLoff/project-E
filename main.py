@@ -13,27 +13,6 @@ def enlarge_range(origin,new):
     return [min(origin[0],new[0]),max(origin[1],new[1])]
 def intersect(l1,l2):
     return (l1[0]<l2[1])==(l2[0]<l1[1])
-def dipoint_arc_interpretation(curvature,p1,p2):
-    fp1,fp2 = pygame.Vector2(p1),pygame.Vector2(p2)
-    center = fp2+(fp1-fp2)/2 + (fp1-fp2).normalize().rotate(90) * (1/curvature)
-    rectRad = pygame.Vector2(1,1) * (center-fp1).length()
-    return ArcStatic(pygame.Rect(center-rectRad,rectRad*2),natural_angle(fp1-center),natural_angle(fp2-center))
-
-def format_str_to_obj(elements):
-    if elements[0]=='a':
-        frect = [float(n) for n in elements[1].split(',')]
-        a1,a2 = deg_to_rad(float(elements[2])),deg_to_rad(float(elements[3]))
-        return ArcStatic(frect,a1,a2)
-    if elements[0]=='t':
-        curve,pts = float(elements[1]),[[float(n) for n in elements[i+2].split(',')] for i in range(2)]
-        return dipoint_arc_interpretation(curve,pts[0],pts[1])
-    if elements[0]=='l':
-        p1,p2 = [float(n) for n in elements[1].split(',')],[float(n) for n in elements[2].split(',')]
-        return LineStatic(p1,p2)
-    return None
-def level_read(data):
-    return [format_str_to_obj(line.strip().split(';')) for line in data]
-
 
 if __name__ == '__main__':
     pygame.init()
@@ -61,21 +40,27 @@ if __name__ == '__main__':
     # GAME ELEMENTS
     GRAVITY = pygame.Vector2(0,9.81) * 10
     AIRRESISTANCE = 1 - 0.00001
-    GROUNDFRICTION = 1 - 0.0002
     THROWFORCE = 0.8
 
-    level = [ProtoArc((0,0),(800,0),(0,600))] # level_read(open("level.txt","r").readlines()) +
+    ARCTP = lambda : ProtoArc((50,50),(0,0),(100,100))
+    LINETP = lambda: ProtoLine( (0, 0), (100, 100))
+    level = [
+        ProtoArc((0,0),(800,0),(0,600)),
+        ProtoArc((300, 300), (350, 250), (350, 350)),
+    ]
+
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
     bench = [TEMPLATE.copy() for _ in range(5)]
     peg = bench.pop()
     distance = 100.0
     closestObj = None
 
-    REACTION_RANGE = TEMPLATE.radius + 5
     IMPACTSPLASH = 10
     fPos = -1
     lPos = -1
     surfTile = -1
+    remTime = 0.0
+    LINKTIME = 0.05
 
     TILESIZE = 50
     satTile = [0]*(SCREEN_WIDTH//TILESIZE)
@@ -94,6 +79,9 @@ if __name__ == '__main__':
         "tag": 0,
         "attempt left":len(bench),
     }
+    isClicked = False
+    a,b,c = 1,0,0
+    select = 0
 
     # VISUAL INITALISATION
     STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/bg_01_v01.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
@@ -113,27 +101,46 @@ if __name__ == '__main__':
             elif evnt.type == pygame.KEYDOWN:
                 if evnt.key == pygame.K_ESCAPE:
                     isGameRunning = False
-                if evnt.key == pygame.K_SPACE:
+                elif evnt.key == pygame.K_SPACE:
                     isPhysicActive = not isPhysicActive
-                if evnt.key == pygame.K_F1:
+                elif evnt.key == pygame.K_F1:
                     isDebugModeOn = not isDebugModeOn
-                if evnt.key == pygame.K_F2 and isDebugModeOn:
+                elif evnt.key == pygame.K_F2 and isDebugModeOn:
                     isDebugBGOn = not isDebugBGOn
-                if evnt.key == pygame.K_F3 and isDebugModeOn:
+                elif evnt.key == pygame.K_F3 and isDebugModeOn:
                     isPegLunched = False
                     isPhysicActive = False
                     peg = TEMPLATE.copy()
                     isLevelRunning = True
-            elif evnt.type == pygame.MOUSEBUTTONDOWN:
-                if not isPegLunched and isLevelRunning:
+                elif evnt.key == pygame.K_c and not isPegLunched and isLevelRunning:
                     peg.velocity += kickstartVel
                     isPegLunched = True
                     isPhysicActive = True
+                elif evnt.key == pygame.K_F4 and isDebugModeOn:
+                    level.append(ARCTP())
+                elif evnt.key == pygame.K_F5 and isDebugModeOn:
+                    level.append(LINETP())
+
+                elif evnt.key == pygame.K_a and isDebugModeOn:
+                    a,b,c = 1,0,0
+                elif evnt.key == pygame.K_z and isDebugModeOn:
+                    a,b,c = 0,1,0
+                elif evnt.key == pygame.K_e and isDebugModeOn:
+                    a,b,c = 0,0,1
+
+            elif evnt.type == pygame.MOUSEBUTTONDOWN:
+                isClicked = True
+            elif evnt.type == pygame.MOUSEBUTTONUP:
+                isClicked = False
+            elif evnt.type == pygame.MOUSEMOTION and isClicked:
+                level[select].update(level[select].vecCenter+pygame.Vector2(evnt.rel)*a,
+                                level[select].startPoint+pygame.Vector2(evnt.rel)*b,
+                                level[select].endPoint+pygame.Vector2(evnt.rel)*c)
 
         # PHYSIC
         if isPhysicActive:
-            inContact,monitoredData["diff"],monitoredData["over"] = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,GROUNDFRICTION,level)
-            if peg.pos.y > SCREEN_HEIGHT:
+            inContact,monitoredData["diff"],monitoredData["over"] = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,level)
+            if 0.0 > peg.pos.y or  peg.pos.y > SCREEN_HEIGHT or 0.0 > peg.pos.x or peg.pos.x > SCREEN_WIDTH :
                 if len(bench)>0:
                     isPegLunched = False
                     isPhysicActive = False
@@ -144,16 +151,20 @@ if __name__ == '__main__':
                     isPegLunched = False
                     isPhysicActive = False
             if inContact:
+                remTime = LINKTIME
+            else:
+                remTime = max(remTime-dt,-1)
+            if remTime > 0.0:
                 if fPos == -1:
                     fPos,lPos,surfTile = peg.pos.x,peg.pos.x,int(peg.pos.x // TILESIZE)
                 else:
                     if int(peg.pos.x // TILESIZE) != surfTile:
-                        satTile[int(peg.pos.x // TILESIZE)] += max(IMPACTSPLASH, abs(lPos - fPos))
+                        satTile[int(peg.pos.x // TILESIZE)] += abs(lPos - fPos)
                         fPos, lPos, surfTile = peg.pos.x, peg.pos.x, int(peg.pos.x // TILESIZE)
                     else:
                         lPos = peg.pos.x
             elif lPos != -1:
-                satTile[int(peg.pos.x // TILESIZE)] += max(IMPACTSPLASH,abs(lPos - fPos))
+                satTile[int(peg.pos.x // TILESIZE)] += abs(lPos - fPos)
                 fPos, lPos, surfTile = -1,-1,-1
 
         monitoredData["tt water"] = sum(satTile)
@@ -168,7 +179,7 @@ if __name__ == '__main__':
                 visualPos += visualVel * 0.2
                 dHandler.add_area(pygame.draw.circle(SCREEN,(255,255,255),visualPos,5))
 
-        monitoredData["inside"] = level[0].detection_area(peg.pos)
+        monitoredData["inside"] = level[select].detection_area(peg.pos)
 
         # DEBUG LAYER
         if isDebugModeOn:
@@ -182,14 +193,11 @@ if __name__ == '__main__':
                 tCol = ((int(peg.pos.x // TILESIZE) == i) * 125, (int(peg.pos.x // TILESIZE) == i) * 125,min(int(satTile[i]), 255))
                 tPlace = pygame.Rect(TILESIZE * i, SCREEN_HEIGHT - TILESIZE, TILESIZE, TILESIZE)
                 dHandler.add_area(pygame.draw.rect(SCREEN, tCol, tPlace))
+                dHandler.dynamic_blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),(tPlace.topleft))
             dHandler.add_area(peg.render(SCREEN))
             dHandler.add_area(pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity))
-            if closestObj is not None:
-                dHandler.add_area(pygame.draw.line(SCREEN, (255, 0, 0), peg.pos, peg.pos + closestObj))
             for elt in level:
                 dHandler.add_area(elt.render(SCREEN))
-            dHandler.add_area(pygame.draw.lines(SCREEN,(255,255,255),False,
-                                                [radial_vec(level[0].radius(k * math.pi/180),k * math.pi/180) for k in range(90)]))
 
         dHandler.cycle()
 

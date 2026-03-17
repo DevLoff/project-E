@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="oh and the img">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="made the physic even more legendary than before (my sanity is dead) ;(">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_objs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physic_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773532570074</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="made the physic even more legendary than before (my sanity is dead) ;(">
+      <option name="closed" value="true" />
+      <created>1773694911227</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773694911227</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +216,7 @@
     <MESSAGE value="small opti" />
     <MESSAGE value="smol lil changes (mostly code cleaning)" />
     <MESSAGE value="oh and the img" />
-    <option name="LAST_COMMIT_MESSAGE" value="oh and the img" />
+    <MESSAGE value="made the physic even more legendary than before (my sanity is dead) ;(" />
+    <option name="LAST_COMMIT_MESSAGE" value="made the physic even more legendary than before (my sanity is dead) ;(" />
   </component>
 </project>
