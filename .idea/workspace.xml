@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="scraps of what will become a great level editor">
-      <change beforePath="$PROJECT_DIR$/level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="put error fence" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +198,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773876762646</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="save system for the editor">
+      <option name="closed" value="true" />
+      <created>1773877167369</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1773877167369</updated>
+    </task>
+    <task id="LOCAL-00018" summary="put error fence">
+      <option name="closed" value="true" />
+      <created>1773877402566</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1773877402566</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,6 +246,8 @@
     <MESSAGE value="made the physic even more legendary than before (my sanity is dead) ;(" />
     <MESSAGE value="ok im done with physic (no optimisation anymore)" />
     <MESSAGE value="scraps of what will become a great level editor" />
-    <option name="LAST_COMMIT_MESSAGE" value="scraps of what will become a great level editor" />
+    <MESSAGE value="save system for the editor" />
+    <MESSAGE value="put error fence" />
+    <option name="LAST_COMMIT_MESSAGE" value="put error fence" />
   </component>
 </project>

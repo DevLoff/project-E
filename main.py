@@ -90,7 +90,6 @@ if __name__ == '__main__':
         # EVENT HANDLER
         dt = CLOCK.tick()/1000
         eventList = pygame.event.get()
-        monitoredData["check"] = level[0].radius(natural_angle(peg.pos))
 
         # TEMPORARY SYSTEM
         for evnt in eventList:
@@ -188,8 +187,6 @@ if __name__ == '__main__':
                 visualVel *= AIRRESISTANCE
                 visualPos += visualVel * 0.2
                 dHandler.add_area(pygame.draw.circle(SCREEN,(255,255,255),visualPos,5))
-
-        monitoredData["inside"] = level[select].detection_area(peg.pos)
 
         # DEBUG LAYER
         if isDebugModeOn:
