@@ -163,11 +163,14 @@ class ProtoArc(StaticObj):
         return (self.elipticMat * radial_vec(1,self.eliptic_angle(alpha))).length()
 
     def normal(self,point) -> pygame.Vector2:
+        """
         studiedAngle = natural_angle(pygame.Vector2(point)-self.vecCenter)
-        studiedRef = math.cos(studiedAngle)*self.endRel - math.sin(studiedAngle)*self.startRel
+        studiedRef = self.elipticMat.inverse() * pygame.Vector2(math.cos(studiedAngle),-math.sin(studiedAngle))
+        """
+        studiedRef = pygame.Vector2(point) - self.vecCenter
         if studiedRef.length() == 0:
             return studiedRef.copy()
-        return studiedRef.normalize().rotate(-90)
+        return studiedRef.normalize()
 
     def proximity(self, point) -> float:
         studiedPoint = pygame.Vector2(point)-self.vecCenter
