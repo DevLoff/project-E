@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="made the physic even more legendary than before (my sanity is dead) ;(">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_objs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/physic_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
