@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_objs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physic_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stage_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773694911227</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ok im done with physic (no optimisation anymore)">
+      <option name="closed" value="true" />
+      <created>1773832313459</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1773832313459</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,6 +225,7 @@
     <MESSAGE value="smol lil changes (mostly code cleaning)" />
     <MESSAGE value="oh and the img" />
     <MESSAGE value="made the physic even more legendary than before (my sanity is dead) ;(" />
-    <option name="LAST_COMMIT_MESSAGE" value="made the physic even more legendary than before (my sanity is dead) ;(" />
+    <MESSAGE value="ok im done with physic (no optimisation anymore)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok im done with physic (no optimisation anymore)" />
   </component>
 </project>

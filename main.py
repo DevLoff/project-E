@@ -1,6 +1,9 @@
 # IMPORT
+import pygame
+
 from physic_objs import *
 from stage_handler import DisplayHandler
+import pickle
 
 """
 CONSTANT_CONSTANT : use upper case
@@ -42,11 +45,10 @@ if __name__ == '__main__':
     AIRRESISTANCE = 1 - 0.00001
     THROWFORCE = 0.8
 
-    ARCTP = lambda : ProtoArc((50,50),(0,0),(100,100))
+    ARCTP = lambda : ProtoArc((100,0),(0,0),(100,100))
     LINETP = lambda: ProtoLine( (0, 0), (100, 100))
     level = [
-        ProtoArc((0,0),(800,0),(0,600)),
-        ProtoArc((300, 300), (350, 250), (350, 350)),
+        ProtoArc((0,0),(800,0),(0,600))
     ]
 
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
@@ -116,10 +118,13 @@ if __name__ == '__main__':
                     peg.velocity += kickstartVel
                     isPegLunched = True
                     isPhysicActive = True
-                elif evnt.key == pygame.K_F4 and isDebugModeOn:
+                elif evnt.key == pygame.K_w and isDebugModeOn:
                     level.append(ARCTP())
-                elif evnt.key == pygame.K_F5 and isDebugModeOn:
+                elif evnt.key == pygame.K_x and isDebugModeOn:
                     level.append(LINETP())
+                elif evnt.key == pygame.K_TAB and isDebugModeOn:
+                    select = (select+1)%len(level)
+                    a,b,c = 1,0,0
 
                 elif evnt.key == pygame.K_a and isDebugModeOn:
                     a,b,c = 1,0,0
@@ -133,9 +138,13 @@ if __name__ == '__main__':
             elif evnt.type == pygame.MOUSEBUTTONUP:
                 isClicked = False
             elif evnt.type == pygame.MOUSEMOTION and isClicked:
-                level[select].update(level[select].vecCenter+pygame.Vector2(evnt.rel)*a,
+                if type(level[select]) == ProtoArc:
+                    level[select].update(level[select].vecCenter+pygame.Vector2(evnt.rel)*a,
                                 level[select].startPoint+pygame.Vector2(evnt.rel)*b,
                                 level[select].endPoint+pygame.Vector2(evnt.rel)*c)
+                if type(level[select]) == ProtoLine:
+                    level[select].update(level[select].startPoint+pygame.Vector2(evnt.rel)*a,
+                                level[select].endPoint+pygame.Vector2(evnt.rel)*b)
 
         # PHYSIC
         if isPhysicActive:
@@ -183,21 +192,29 @@ if __name__ == '__main__':
 
         # DEBUG LAYER
         if isDebugModeOn:
-            if isDebugBGOn:
-                dHandler.add_area(SCREEN.fill((0,0,0)))
+            SCREEN.fill((0,0,0))
             align = 0
             for data in monitoredData:
-                dHandler.dynamic_blit(GAMEFONT.render(f"{data} : {monitoredData[data]}",True,(255,255,255)),(0,20*align))
+                SCREEN.blit(GAMEFONT.render(f"{data} : {monitoredData[data]}",True,(255,255,255)),(0,20*align))
                 align += 1
             for i in range(len(satTile)):
                 tCol = ((int(peg.pos.x // TILESIZE) == i) * 125, (int(peg.pos.x // TILESIZE) == i) * 125,min(int(satTile[i]), 255))
                 tPlace = pygame.Rect(TILESIZE * i, SCREEN_HEIGHT - TILESIZE, TILESIZE, TILESIZE)
-                dHandler.add_area(pygame.draw.rect(SCREEN, tCol, tPlace))
-                dHandler.dynamic_blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),(tPlace.topleft))
-            dHandler.add_area(peg.render(SCREEN))
-            dHandler.add_area(pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity))
+                pygame.draw.rect(SCREEN, tCol, tPlace)
+                SCREEN.blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),(tPlace.topleft))
+            peg.render(SCREEN)
+            if type(level[select]) == ProtoArc:
+                level[select].debug_render(SCREEN)
+                pygame.draw.circle(SCREEN,(255,255,0),level[select].vecCenter*a+level[select].startPoint*b+level[select].endPoint*c,3)
+            if type(level[select]) == ProtoLine:
+                pygame.draw.circle(SCREEN,(255,255,0),level[select].startPoint*a+level[select].endPoint*b,3)
+            pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity)
             for elt in level:
-                dHandler.add_area(elt.render(SCREEN))
+                if elt == level[select]:
+                    elt.render(SCREEN, (255, 255, 0))
+                else:
+                    elt.render(SCREEN,(255,255,255))
+            pygame.display.flip()
 
         dHandler.cycle()
 

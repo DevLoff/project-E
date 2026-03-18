@@ -18,7 +18,10 @@ class DisplayHandler:
         self.earlyClears.clear()
 
     def add_area(self, area):
-        self.earlyClears.append(area)
+        if type(area) == pygame.Rect:
+            self.earlyClears.append(area)
+        if type(area) == list[pygame.Rect]:
+            self.earlyClears += area
 
     def dynamic_blit(self, surface, dest):
         self.add_area(self.screen.blit(surface, dest))

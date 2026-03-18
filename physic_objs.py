@@ -149,12 +149,10 @@ class ProtoArc(StaticObj):
         self.elipticMat = Matrix2(self.startRel,self.endRel)
         self.startAngle = natural_angle(self.startRel)
         self.endAngle = natural_angle(self.endRel)
-        self.span = self.endAngle - self.startAngle
+        self.span = abs(self.endAngle - self.startAngle)
         self.acute = self.span < math.pi
         self.startBracket = self.normal(self.startPoint).rotate(90)
         self.endBracket = self.normal(self.endPoint).rotate(-90)
-
-        print(self.radius(natural_angle(self.startRel)),self.startRel.length())
 
     def eliptic_angle(self,alpha):
         return natural_angle(self.elipticMat.inverse() * radial_vec(1,alpha))
@@ -180,17 +178,18 @@ class ProtoArc(StaticObj):
         studiedPoint = pygame.Vector2(point)
         return ((self.startBracket.dot(studiedPoint-self.startPoint)>0) + (self.endBracket.dot(studiedPoint-self.endPoint)>0)) >= 1 + self.acute
 
-    def render(self,surface) -> pygame.Rect:
+    def render(self,surface,color) -> pygame.Rect:
         rank = (math.pi/180)
-        rect = pygame.draw.lines(surface,(255,255,255),False,
-            [self.elipticMat * radial_vec(1,k*rank) + self.vecCenter for k in range(360)])
+        return pygame.draw.lines(surface,color,False,
+            [self.elipticMat * radial_vec(1,k*rank) + self.vecCenter for k in range(int(90))])
 
-        rect.union(pygame.draw.circle(surface,(255,0,0),self.vecCenter,3))
-        rect.union(pygame.draw.line(surface, (255, 0, 0), self.startPoint, self.vecCenter))
-        rect.union(pygame.draw.line(surface, (255, 0, 0), self.endPoint, self.vecCenter))
-
-        rect.union(pygame.draw.line(surface, (255, 0, 0), self.startPoint, self.startPoint + 10*self.normal(self.startPoint)))
-        return rect
+    def debug_render(self,surface):
+        rects = [
+            pygame.draw.circle(surface,(255,0,0),self.vecCenter,3),
+            pygame.draw.line(surface, (255, 0, 0), self.startPoint, self.vecCenter),
+            pygame.draw.line(surface, (255, 0, 0), self.endPoint, self.vecCenter)
+        ]
+        return rects
 
 class ProtoLine(StaticObj):
     def __init__(self,start_point,end_point) -> None:
@@ -215,5 +214,5 @@ class ProtoLine(StaticObj):
     def normal(self,point) -> pygame.Vector2:
         return self.norm
 
-    def render(self,surface) -> pygame.Rect:
-        return pygame.draw.line(surface,(255,255,255),self.startPoint,self.endPoint)
+    def render(self,surface,color) -> pygame.Rect:
+        return pygame.draw.line(surface,color,self.startPoint,self.endPoint)
