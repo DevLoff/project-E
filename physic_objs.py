@@ -1,5 +1,3 @@
-import pygame
-
 from physic_utils import *
 
 class StaticObj:
@@ -9,7 +7,7 @@ class StaticObj:
         pass
     def detection_area(self, point) -> bool:
         pass
-    def render(self, surface) -> pygame.Rect:
+    def render(self, surface, color) -> pygame.Rect:
         pass
 
 """

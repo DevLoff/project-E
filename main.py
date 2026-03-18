@@ -1,6 +1,4 @@
 # IMPORT
-import pygame
-
 from physic_objs import *
 from stage_handler import DisplayHandler
 import pickle
@@ -47,10 +45,7 @@ if __name__ == '__main__':
 
     ARCTP = lambda : ProtoArc((100,0),(0,0),(100,100))
     LINETP = lambda: ProtoLine( (0, 0), (100, 100))
-    level = [
-        ProtoArc((0,0),(800,0),(0,600))
-    ]
-    #level = pickle.load(open("level.pickle","rb"))
+    level = []
 
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
     bench = [TEMPLATE.copy() for _ in range(5)]
@@ -130,7 +125,7 @@ if __name__ == '__main__':
                 elif evnt.key == pygame.K_q and isDebugModeOn:
                     level = pickle.load(open("level.pickle","rb"))
                 elif evnt.key == pygame.K_s and isDebugModeOn:
-                    pickle.dump(level,open("level.pickle","wb"),pickle.HIGHEST_PROTOCOL)
+                    pickle.dump(level,open("level.pickle","wb"),pickle.HIGHEST_PROTOCOL) # noqa
 
                 elif evnt.key == pygame.K_a and isDebugModeOn:
                     a,b,c = 1,0,0
@@ -143,7 +138,7 @@ if __name__ == '__main__':
                 isClicked = True
             elif evnt.type == pygame.MOUSEBUTTONUP:
                 isClicked = False
-            elif evnt.type == pygame.MOUSEMOTION and isClicked:
+            elif evnt.type == pygame.MOUSEMOTION and isClicked and len(level)>0:
                 if type(level[select]) == ProtoArc:
                     level[select].update(level[select].vecCenter+pygame.Vector2(evnt.rel)*a,
                                 level[select].startPoint+pygame.Vector2(evnt.rel)*b,
@@ -207,16 +202,16 @@ if __name__ == '__main__':
                 tCol = ((int(peg.pos.x // TILESIZE) == i) * 125, (int(peg.pos.x // TILESIZE) == i) * 125,min(int(satTile[i]), 255))
                 tPlace = pygame.Rect(TILESIZE * i, SCREEN_HEIGHT - TILESIZE, TILESIZE, TILESIZE)
                 pygame.draw.rect(SCREEN, tCol, tPlace)
-                SCREEN.blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),(tPlace.topleft))
+                SCREEN.blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),tPlace.topleft)
             peg.render(SCREEN)
-            if type(level[select]) == ProtoArc:
+            if len(level)>0 and type(level[select]) == ProtoArc:
                 level[select].debug_render(SCREEN)
                 pygame.draw.circle(SCREEN,(255,255,0),level[select].vecCenter*a+level[select].startPoint*b+level[select].endPoint*c,3)
-            if type(level[select]) == ProtoLine:
+            if len(level)>0 and type(level[select]) == ProtoLine:
                 pygame.draw.circle(SCREEN,(255,255,0),level[select].startPoint*a+level[select].endPoint*b,3)
             pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity)
             for elt in level:
-                if elt == level[select]:
+                if len(level)>0 and elt == level[select] :
                     elt.render(SCREEN, (255, 255, 0))
                 else:
                     elt.render(SCREEN,(255,255,255))
