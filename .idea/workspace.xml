@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="made the physic even more legendary than before (my sanity is dead) ;(">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="scraps of what will become a great level editor">
+      <change beforePath="$PROJECT_DIR$/level.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_objs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773832313459</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="scraps of what will become a great level editor">
+      <option name="closed" value="true" />
+      <created>1773876762646</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1773876762646</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +232,7 @@
     <MESSAGE value="oh and the img" />
     <MESSAGE value="made the physic even more legendary than before (my sanity is dead) ;(" />
     <MESSAGE value="ok im done with physic (no optimisation anymore)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ok im done with physic (no optimisation anymore)" />
+    <MESSAGE value="scraps of what will become a great level editor" />
+    <option name="LAST_COMMIT_MESSAGE" value="scraps of what will become a great level editor" />
   </component>
 </project>

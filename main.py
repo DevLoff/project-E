@@ -50,6 +50,7 @@ if __name__ == '__main__':
     level = [
         ProtoArc((0,0),(800,0),(0,600))
     ]
+    #level = pickle.load(open("level.pickle","rb"))
 
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
     bench = [TEMPLATE.copy() for _ in range(5)]
@@ -125,6 +126,11 @@ if __name__ == '__main__':
                 elif evnt.key == pygame.K_TAB and isDebugModeOn:
                     select = (select+1)%len(level)
                     a,b,c = 1,0,0
+
+                elif evnt.key == pygame.K_q and isDebugModeOn:
+                    level = pickle.load(open("level.pickle","rb"))
+                elif evnt.key == pygame.K_s and isDebugModeOn:
+                    pickle.dump(level,open("level.pickle","wb"),pickle.HIGHEST_PROTOCOL)
 
                 elif evnt.key == pygame.K_a and isDebugModeOn:
                     a,b,c = 1,0,0
