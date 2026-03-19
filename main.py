@@ -43,9 +43,9 @@ if __name__ == '__main__':
     AIRRESISTANCE = 1 - 0.00001
     THROWFORCE = 0.8
 
-    ARCTP = lambda : ProtoArc((100,0),(0,0),(100,100))
+    ARCTP = lambda : BetterArc((100,0),(0,0),100,math.pi/2,math.pi)
     LINETP = lambda: ProtoLine( (0, 0), (100, 100))
-    level = []
+    level : list[ProtoLine | BetterArc] = []
 
     TEMPLATE = DiscBody(10,(SCREEN_WIDTH//2,0),(0,0),0)
     bench = [TEMPLATE.copy() for _ in range(5)]
@@ -76,10 +76,18 @@ if __name__ == '__main__':
         "dist": 100,
         "tag": 0,
         "attempt left":len(bench),
+        "normal":pygame.Vector2()
     }
     isClicked = False
-    a,b,c = 1,0,0
+    attribute = 0
     select = 0
+    argOptions = {
+        pygame.K_a: 0,
+        pygame.K_z: 1,
+        pygame.K_e: 2,
+        pygame.K_r: 3,
+        pygame.K_t: 4,
+    }
 
     # VISUAL INITALISATION
     STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/bg_01_v01.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
@@ -117,38 +125,28 @@ if __name__ == '__main__':
                     level.append(ARCTP())
                 elif evnt.key == pygame.K_x and isDebugModeOn:
                     level.append(LINETP())
-                elif evnt.key == pygame.K_TAB and isDebugModeOn:
-                    select = (select+1)%len(level)
-                    a,b,c = 1,0,0
 
                 elif evnt.key == pygame.K_q and isDebugModeOn:
                     level = pickle.load(open("level.pickle","rb"))
                 elif evnt.key == pygame.K_s and isDebugModeOn:
                     pickle.dump(level,open("level.pickle","wb"),pickle.HIGHEST_PROTOCOL) # noqa
 
-                elif evnt.key == pygame.K_a and isDebugModeOn:
-                    a,b,c = 1,0,0
-                elif evnt.key == pygame.K_z and isDebugModeOn:
-                    a,b,c = 0,1,0
-                elif evnt.key == pygame.K_e and isDebugModeOn:
-                    a,b,c = 0,0,1
+                elif isDebugModeOn and len(level)>0:
+                    if evnt.key in argOptions:
+                        attribute = argOptions[evnt.key] % len(level[select].get_setters())
+                    if evnt.key == pygame.K_TAB:
+                        select = (select + 1) % len(level)
+                    elif evnt.key == pygame.K_d:
+                        level.pop(select)
+                        select = 0
 
-            elif evnt.type == pygame.MOUSEBUTTONDOWN:
-                isClicked = True
-            elif evnt.type == pygame.MOUSEBUTTONUP:
-                isClicked = False
             elif evnt.type == pygame.MOUSEMOTION and isClicked and len(level)>0:
-                if type(level[select]) == ProtoArc:
-                    level[select].update(level[select].vecCenter+pygame.Vector2(evnt.rel)*a,
-                                level[select].startPoint+pygame.Vector2(evnt.rel)*b,
-                                level[select].endPoint+pygame.Vector2(evnt.rel)*c)
-                if type(level[select]) == ProtoLine:
-                    level[select].update(level[select].startPoint+pygame.Vector2(evnt.rel)*a,
-                                level[select].endPoint+pygame.Vector2(evnt.rel)*b)
+                level[select].get_setters()[attribute](evnt.rel)
+            isClicked = ((evnt.type == pygame.MOUSEBUTTONDOWN) or isClicked) and not evnt.type == pygame.MOUSEBUTTONUP
 
         # PHYSIC
         if isPhysicActive:
-            inContact,monitoredData["diff"],monitoredData["over"] = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,level)
+            inContact,monitoredData["diff"],monitoredData["over"],monitoredData["normal"] = peg.static_collision_phy(dt,GRAVITY,AIRRESISTANCE,level)
             if 0.0 > peg.pos.y or  peg.pos.y > SCREEN_HEIGHT or 0.0 > peg.pos.x or peg.pos.x > SCREEN_WIDTH :
                 if len(bench)>0:
                     isPegLunched = False
@@ -201,11 +199,6 @@ if __name__ == '__main__':
                 pygame.draw.rect(SCREEN, tCol, tPlace)
                 SCREEN.blit(GAMEFONT.render(f"{satTile[i]}",True,(255,255,255)),tPlace.topleft)
             peg.render(SCREEN)
-            if len(level)>0 and type(level[select]) == ProtoArc:
-                level[select].debug_render(SCREEN)
-                pygame.draw.circle(SCREEN,(255,255,0),level[select].vecCenter*a+level[select].startPoint*b+level[select].endPoint*c,3)
-            if len(level)>0 and type(level[select]) == ProtoLine:
-                pygame.draw.circle(SCREEN,(255,255,0),level[select].startPoint*a+level[select].endPoint*b,3)
             pygame.draw.line(SCREEN,(255,0,0),peg.pos,peg.pos+peg.velocity)
             for elt in level:
                 if len(level)>0 and elt == level[select] :
