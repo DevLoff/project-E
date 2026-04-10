@@ -1,4 +1,5 @@
 import pygame
+from objects.input_obj import INPUTBOARD
 
 class Level:
     def __init__(self):
@@ -60,12 +61,15 @@ class Level:
             peg.move_and_slide(dt,self.gravity,self.platforms)
             if not pygame.display.get_surface().get_rect().collidepoint(peg.pos):
                 self.pegs.remove(peg)
+        if INPUTBOARD.pressed("reset"):
+            self.pegs.clear()
         if len(self.pegs) < 1:
             self.launched = False
             self.rack_peg()
+
     def tactic(self):
         self.pegs[0].pos = self.ports[self.initial].pos.copy()
-        if pygame.mouse.get_pressed()[0]:
+        if INPUTBOARD.pressed("launch"):
             self.launched = True
             self.launch_peg()
 

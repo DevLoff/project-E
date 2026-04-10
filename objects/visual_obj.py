@@ -1,6 +1,6 @@
 import pygame
 
-from objects.physic_obj import DiscBody,Arc,Line
+from objects.physic_obj import DiscBody
 from utils.image_util import handle_imglike
 
 class Peg(DiscBody):
@@ -23,14 +23,5 @@ class Cloud:
 
         self.hitboxes = []
         for static in statics:
-            if static[0] == 'a':
-                self.hitboxes.append(Arc(
-                    pygame.Vector2(static[1])+self.pos,
-                    static[2],
-                    static[3]
-                ))
-            if static[0] == 'l':
-                self.hitboxes.append(Line(
-                    pygame.Vector2(static[1]) + self.pos,
-                    pygame.Vector2(static[2]) + self.pos
-                ))
+            static.move(self.pos)
+            self.hitboxes.append(static)

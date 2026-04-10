@@ -1,6 +1,8 @@
 import pygame
 from objects.level_obj import Level
 from objects.visual_obj import Peg, Port, Cloud
+from objects.physic_obj import Line,Circle
+from objects.input_obj import INPUTBOARD
 
 if __name__ == '__main__':
     pygame.init()
@@ -9,6 +11,10 @@ if __name__ == '__main__':
     SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
     SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     CLOCK = pygame.time.Clock()
+
+    # INPUTS
+    INPUTBOARD.mod_input("launch",0)
+    INPUTBOARD.mod_input("reset", pygame.K_r)
 
     # VARIABLES
     dt : float
@@ -25,8 +31,12 @@ if __name__ == '__main__':
         Peg(10, "Images/peg.png"),
     )
     currentLevel.initialize_cloud(
-        Cloud((400,300),None,('a',(0,0),(50,0),(0,50))),
-        #Cloud((400, 200), None, ('l', (-100, -100), (100, 100))),
+        Cloud((400,200),None,
+              Circle((0,0),50)
+        ),
+        Cloud((400, 200), None,
+              Line((-100,-100),(100,100))
+        ),
     )
 
 

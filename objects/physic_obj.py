@@ -35,6 +35,8 @@ General representation of non moving platform
 """
 
 class StaticObj:
+    def move(self,disp) -> None:
+        pass
     def normal(self,angle) -> pygame.Vector2:
         pass
     def proximity(self, point) -> float:
@@ -94,6 +96,10 @@ class Line(StaticObj):
         self.sBracket = self.stretch.normalize()
         self.eBracket = - self.sBracket
 
+    def move(self,disp) -> None:
+        self.sPoint += pygame.Vector2(disp)
+        self.ePoint += pygame.Vector2(disp)
+
     def normal(self,point) -> pygame.Vector2:
         study = pygame.Vector2(point) - self.sPoint
         return study.project(self.stretch.rotate(90)).normalize()
@@ -108,3 +114,26 @@ class Line(StaticObj):
 
     def hitbox(self,surface) -> None:
         pygame.draw.line(surface,(255,0,0),self.sPoint,self.ePoint,1)
+
+class Circle(StaticObj):
+    def __init__(self,center,radius) -> None:
+        super().__init__()
+        self.center = pygame.Vector2(center)
+        self.radius = radius
+
+    def move(self,disp) -> None:
+        self.center += pygame.Vector2(disp)
+
+    def normal(self,point) -> pygame.Vector2:
+        study = pygame.Vector2(point) - self.center
+        return study.normalize()
+
+    def proximity(self,point) -> float:
+        study = (pygame.Vector2(point) - self.center).length()
+        return study - self.radius
+
+    def in_range(self, point) -> bool:
+        return True
+
+    def hitbox(self,surface) -> None:
+        pygame.draw.circle(surface,(255,0,0),self.center,self.radius)
