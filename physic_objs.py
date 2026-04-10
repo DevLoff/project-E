@@ -230,7 +230,7 @@ class ProtoLine(StaticObj):
     def normal(self,point) -> pygame.Vector2:
         return self.norm
 
-    def render(self,surface,color) -> pygame.Rect:
+    def render(self,surface,color=(255,255,255)):
         marks = []
         if color == (255,255,0):
             marks = self.debug_render(surface)
@@ -313,7 +313,7 @@ class BetterArc(StaticObj):
         studiedPoint = pygame.Vector2(point)
         return ((self.startBracket.dot(studiedPoint-self.startPoint)>0) + (self.endBracket.dot(studiedPoint-self.endPoint)>0)) == 2
 
-    def render(self,surface,color):
+    def render(self,surface,color=(255,255,255)):
         marks = []
         if color == (255,255,0):
             marks = self.debug_render(surface)

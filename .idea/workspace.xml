@@ -4,10 +4,565 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="put more error fence">
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="a version of level editor (i fcking fixed the elliptic normal anomaly)">
+      <change afterPath="$PROJECT_DIR$/debug.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects/math_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects/physic_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects/stage_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects/visual_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opti_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/image_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/math_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/menu_util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/level.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/physic_objs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/MANIFEST.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Setup.SDL1.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Setup.SDL2.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Setup_Darwin.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Setup_Unix.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/Setup_Win_Common.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/bundle_docs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/config_darwin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/config_msys.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/config_unix.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/config_win.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/download_win_prebuilt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/makeref.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/msysio.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/obj/win32/scale_mmx.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/obj/win64/scale_mmx.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/.flake8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/__init__.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/bufferproxy.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/color.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/event.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/joystick.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/rect.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/pygame-stubs/surface.pyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/setup_win_common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/version.py.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/buildconfig/vstools.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/LGPL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/howto_release_pygame.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/logos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/pygame_logo.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/pygame_powered.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/pygame_small.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/pygame_tiny.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/_static/pygame.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/_static/pygame_tiny.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/_static/reset.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/_static/tooltip.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/_templates/header.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/base.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/bufferproxy.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/cdrom.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/color.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/display.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/event.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/freetype.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/mixer.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/rect.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/rwobject.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/surface.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/surflock.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/c_api/version.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/common.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/conf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/boilerplate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/customversion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/edit_on_github.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/headers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/indexer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ext/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/filepaths.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/index.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/bufferproxy.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/camera.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/cdrom.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/code_examples/draw_module_example.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/code_examples/draw_module_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/code_examples/joystick_calls.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/code_examples/joystick_calls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/color.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/common.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/cursors.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/display.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/draw.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/event.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/examples.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/font.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/freetype.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/gfxdraw.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/image.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/joystick.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/key.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/locals.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/mask.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/math.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/midi.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/mixer.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/mouse.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/music.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/overlay.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/pixelarray.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/pixelcopy.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/pygame.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/rect.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/scrap.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/sndarray.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/sprite.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/surface.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/surfarray.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/tests.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/time.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/touch.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/ref/transform.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/themes/classic/elements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/themes/classic/page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/themes/classic/static/pygame.css_t" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/themes/classic/theme.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/CameraIntro.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/ChimpLineByLine.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/DisplayModes.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/ImportInit.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/MakeGames.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/MoveIt.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/PygameIntro.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/SpriteIntro.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/SurfarrayIntro-rest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/SurfarrayIntro.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_average.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_green.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_hsv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_mask.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_rgb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_thresh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_thresholded.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/camera_yuv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/chimp.py.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/chimpshot.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/common.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/intro_ball.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/intro_blade.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/intro_freedom.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/newbieguide.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_allblack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_flipped.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_redimg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_rgbarray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_scaledown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_scaleup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_soften.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_striped.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/surfarray_xfade.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_basic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_event-flowchart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_formulae.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_games2.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_games3.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_games4.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_games5.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_games6.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/reST/tut/tom_radians.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/docs/ref/docscomments.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/level_obj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/aacircle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/aliens.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/arraydemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/audiocapture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/blend_fill.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/blit_blends.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/camera.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/chimp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/cursors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/alien3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/arraydemo.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/asprite.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/background.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/blue.mpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/bomb.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/boom.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/car_door.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/chimp.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/city.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/danger.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/explosion1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/fist.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/house_lo.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/house_lo.ogg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/house_lo.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/liquid.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/midikeys.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/oldplayer.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/player1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/punch.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/sans.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/secosmic_lo.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/shot.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/static.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/whiff.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/data/yuv_1.pgm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/dropevent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/eventlist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/fastevents.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/fonty.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/freetype_misc.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/glcube.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/headless_no_windows_needed.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/liquid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/MainMenu.nib/JavaCompiling.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/MainMenu.nib/_MainMenu_EOArchive_English.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/MainMenu.nib/classes.nib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/MainMenu.nib/info.nib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/MainMenu.nib/keyedobjects.nib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/English.lproj/aliens.icns" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/aliens.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/aliens_app_example/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/macosx/macfont.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/mask.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/midi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/moveit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/oldalien.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/overlay.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/pixelarray.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/playmus.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/prevent_display_stretching.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/scaletest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/scrap_clipboard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/scroll.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/sound.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/sound_array_demos.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/stars.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/testsprite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/textinput.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/vgrade.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/examples/video.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/.clang-format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/SDL_gfx/SDL_gfxPrimitives.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/SDL_gfx/SDL_gfxPrimitives.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/SDL_gfx/SDL_gfxPrimitives_font.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_camera.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_camera.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_freetype.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_pygame.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/audio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/audio.pxd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/audio.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/sdl2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/sdl2.pxd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/sdl2.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/touch.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/video.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/video.pxd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_sdl2/video.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/_surface.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/alphablit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/bitmask.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/bitmask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/bufferproxy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/camera.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/camera_mac.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/camera_v4l2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/cdrom.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/color.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/constants.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/display.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/bufferproxy_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/camera_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/cdrom_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/color_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/cursors_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/display_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/draw_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/event_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/examples_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/font_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/freetype_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/gfxdraw_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/image_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/joystick_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/key_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/locals_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/mask_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/math_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/midi_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/mixer_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/mouse_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/movie_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/music_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/overlay_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/pixelarray_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/pixelcopy_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/pygame_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/rect_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/scrap_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/sndarray_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/sprite_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/surface_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/surfarray_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/tests_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/time_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/touch_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/doc/transform_doc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/draw.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/event.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/fastevent.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/fastevents.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/fastevents.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/font.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/font.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_cache.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_layout.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_pixel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_render.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_render_cb.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_unicode.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_wrap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/freetype/ft_wrap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/gfxdraw.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/image.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/imageext.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/joystick.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/key.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/mask.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/mask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/math.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/mixer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/mixer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/mouse.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/music.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/newbuffer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/overlay.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/palette.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pgarrinter.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pgbufferproxy.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pgcompat.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pgopengl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pixelarray.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pixelarray_methods.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pixelcopy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pygame.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pypm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/pypm.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/rect.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/rotozoom.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/rwobject.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale2x.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale_mmx.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale_mmx32.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale_mmx64.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale_mmx64_gcc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scale_mmx64_msvc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap_mac.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap_qnx.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap_win.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/scrap_x11.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/sdlmain_osx.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/surface.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/surface.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/surface_fill.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/surflock.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/time.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_c/transform.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_camera_opencv_highgui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_camera_vidcapture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_dummybackend.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_numpysndarray.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_numpysurfarray.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/_sdl2/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/camera.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/colordict.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/compat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/cursors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/draw_py.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/freesansbold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/freetype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/ftfont.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/gp2x/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/gp2x/constants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/gp2x/locals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/locals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/macosx.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/midi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pkgdata.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pygame.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pygame_icon.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pygame_icon.icns" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pygame_icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/pygame_icon.tiff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/sndarray.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/sprite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/surfarray.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/sysfont.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/threads/Py25Queue.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/threads/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/src_py/version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/README.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/base_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/blit_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/bufferproxy_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/camera_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/cdrom_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/cdrom_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/color_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/compat_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/constants_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/cursors_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/display_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/draw_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/event_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fastevent_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fastevent_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/A_PyGameMono-8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/PyGameMono-18-100dpi.bdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/PyGameMono-18-75dpi.bdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/PyGameMono-8.bdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/PyGameMono.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/PyGameMono.sfd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/test_fixed.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/test_sans.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/fonts/u13079_PyGameMono-8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/xbm_cursors/white_sizing.xbm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/fixtures/xbm_cursors/white_sizing_mask.xbm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/font_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/font_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/freetype_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/freetype_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/ftfont_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/ftfont_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/gfxdraw_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/image__save_gl_surface_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/image_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/image_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/imageext_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/imageext_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/joystick_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/key_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mask_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/math_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/midi_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/midi_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mixer_music_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mixer_music_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mixer_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mixer_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/mouse_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/overlay_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/overlay_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/pixelarray_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/pixelcopy_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/rect_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/fake_4_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/fake_5_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/fake_6_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/no_assertions__ret_code_of_1__test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/all_ok/zero_tests_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/everything/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/everything/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/everything/incomplete_todo_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/everything/magic_tag_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/everything/sleep_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/exclude/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/exclude/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/exclude/invisible_tag_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/exclude/magic_tag_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/failures1/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/failures1/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/failures1/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/failures1/fake_4_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete_todo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete_todo/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/incomplete_todo/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/infinite_loop/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/infinite_loop/fake_1_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/infinite_loop/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stderr/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stderr/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stderr/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stderr/fake_4_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stdout/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stdout/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stdout/fake_3_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/print_stdout/fake_4_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/run_tests__test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/timeout/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/timeout/fake_2_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/run_tests__tests/timeout/sleep_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/rwobject_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/scrap_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/scrap_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/sndarray_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/sndarray_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/sprite_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/surface_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/surfarray_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/surfarray_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/surflock_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/sysfont_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_test_.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/arrinter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/async_sub.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/buftools.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/endian.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/png.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/run_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/test_machinery.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/test_utils/test_runner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/threads_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/time_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/touch_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/touch_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/transform_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/util/gen_stubs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/util/gen_stubs_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/util/relative_indentation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/util/svn_log_to_whatsnew.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/test/version_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stage_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,16 +605,51 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.debug.executor&quot;: &quot;Run&quot;,
+    &quot;Python.level_handler.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.menu.executor&quot;: &quot;Run&quot;,
+    &quot;Python.opti_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.physic_objs.executor&quot;: &quot;Run&quot;,
     &quot;Python.physic_utils.executor&quot;: &quot;Run&quot;,
     &quot;Python.stage_handler.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/PycharmProjects/project-E&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\natha\PycharmProjects\project-E" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="opti_test" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="prj-e" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opti_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -227,7 +817,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773877476300</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="a version of level editor (i fcking fixed the elliptic normal anomaly)">
+      <option name="closed" value="true" />
+      <created>1773925480978</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1773925480978</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,6 +860,14 @@
     <MESSAGE value="save system for the editor" />
     <MESSAGE value="put error fence" />
     <MESSAGE value="put more error fence" />
-    <option name="LAST_COMMIT_MESSAGE" value="put more error fence" />
+    <MESSAGE value="a version of level editor (i fcking fixed the elliptic normal anomaly)" />
+    <option name="LAST_COMMIT_MESSAGE" value="a version of level editor (i fcking fixed the elliptic normal anomaly)" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="currentLevel" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
