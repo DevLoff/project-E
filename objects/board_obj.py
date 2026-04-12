@@ -25,3 +25,16 @@ class InputHandler:
             self.lag[tag] = self.test(tag)
 
 INPUTBOARD = InputHandler()
+
+class SoundHandler:
+    def __init__(self):
+        self.sounds = dict()
+
+    def mod_sound(self,tag,filepath):
+        self.sounds[tag] = pygame.mixer.Sound(filepath)
+
+    def play(self,tag):
+        assert (tag in self.sounds),"Missing sound tag"
+        self.sounds[tag].play()
+
+SOUNDBOARD = SoundHandler()

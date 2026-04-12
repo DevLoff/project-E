@@ -1,7 +1,7 @@
 import pygame
 import json
 from utils.stage_util import transform_raw
-from objects.input_obj import INPUTBOARD
+from objects.board_obj import INPUTBOARD
 
 class Game:
     def __init__(self,size):

@@ -1,7 +1,6 @@
 import pygame
-from objects.input_obj import INPUTBOARD
+from objects.board_obj import INPUTBOARD, SOUNDBOARD
 from objects.game_obj import Game
-from utils.image_util import handle_imglike
 
 if __name__ == '__main__':
     pygame.init()
@@ -10,6 +9,8 @@ if __name__ == '__main__':
     INPUTBOARD.mod_input("launch", 0)
     INPUTBOARD.mod_input("click", 0)
     INPUTBOARD.mod_input("reset", pygame.K_r)
+
+    SOUNDBOARD.mod_sound("click","Sound/clicksound1.mp3")
 
     game.load_stage("stages/menus/menu01.json")
 

@@ -13,7 +13,7 @@
     {"rad": 10, "img": "Images/peg.png"}
   ],
   "clouds": [
-    {"pos": [400,300], "img": 0, "hitboxes": [
+    {"pos": [400,300], "img": "Images/cloudtype1.png", "hitboxes": [
       {"type": "circle", "opts": {
         "pos": [0,0], "rad": 50
       }},

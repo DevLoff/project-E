@@ -1,5 +1,5 @@
 import pygame
-from objects.input_obj import INPUTBOARD
+from objects.board_obj import INPUTBOARD
 
 class Stage:
     def __init__(self):

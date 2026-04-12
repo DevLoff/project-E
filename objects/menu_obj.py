@@ -1,6 +1,6 @@
 import pygame
 from objects.visual_obj import UIItem
-from objects.input_obj import INPUTBOARD
+from objects.board_obj import INPUTBOARD, SOUNDBOARD
 from objects.level_obj import Stage
 from utils.menu_util import switch_stage
 
@@ -13,6 +13,7 @@ class Button(UIItem):
 
     def execute(self):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
+            SOUNDBOARD.play("click")
             if self.effect == "switch":
                 switch_stage(self.parent.handling,self.target)
             elif self.effect == "exit":
