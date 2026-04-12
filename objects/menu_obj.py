@@ -2,24 +2,19 @@ import pygame
 from objects.visual_obj import UIItem
 from objects.input_obj import INPUTBOARD
 from objects.level_obj import Stage
-
-class Action:
-    def __init__(self,t,**opts):
-        self.type = t
-        self.options = opts
-
-    def execute(self):
-        if self.type == "toggle":
-            self.fct_toggle()
-
-    def fct_toggle(self):
-        if "target" in self.options:
-            self.options["target"].visibility = not self.options["target"].visibility
+from utils.menu_util import switch_stage
 
 class Button(UIItem):
-    def __init__(self,rect,img,action):
+    def __init__(self,rect,img,action,target):
         super().__init__(rect,img)
+        self.parent = None
         self.effect = action
+        self.target = target
+
+    def execute(self):
+        if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.effect == "switch":
+                switch_stage(self.parent.handling,self.target)
 
 class Menu(Stage):
     def __init__(self):
@@ -30,15 +25,22 @@ class Menu(Stage):
         self.sliders = []
         self.rolls = []
         # LAYERS
-        self.bgLayer = pygame.Surface((0,0))
-        self.uiLayer = pygame.Surface((0,0), flags=pygame.SRCALPHA)
+        size = pygame.display.get_surface().get_size()
+        self.bgLayer = pygame.Surface(size)
+        self.uiLayer = pygame.Surface(size, flags=pygame.SRCALPHA)
         # RENDER MEM
         self.toCleanRects = []
 
+    def add_label(self,label):
+        self.labels.append(label)
+    def add_button(self,button):
+        button.parent = self
+        self.buttons.append(button)
+
     def update(self,**info):
         for button in self.buttons:
-            if INPUTBOARD.pressed("click") and button.visibility:
-                button.action.execute()
+            if INPUTBOARD.pressed("click"):
+                button.execute()
 
     def set_staticlayers(self,bg):
         self.bgLayer.blit(bg, (0, 0))
@@ -53,8 +55,7 @@ class Menu(Stage):
         self.uiLayer = pygame.Surface(self.bgLayer.get_size(), flags=pygame.SRCALPHA)
         newRects = []
         for item in self.labels+self.buttons+self.sliders+self.rolls:
-            if item.visibility:
-                newRects.append(self.uiLayer.blit(item.img,item.rect.topleft))
+            newRects.append(self.uiLayer.blit(item.img,item.rect.topleft))
         return newRects
 
     def render(self):
@@ -63,5 +64,5 @@ class Menu(Stage):
         window.blit(self.bgLayer, (0, 0))
         newRects += self.set_uilayer()
         window.blit(self.uiLayer, (0, 0))
-        pygame.display.update(newRects + self.toCleanRects)
+        pygame.display.flip()
         self.toCleanRects = newRects

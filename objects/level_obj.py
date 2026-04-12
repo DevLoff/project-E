@@ -3,7 +3,7 @@ from objects.input_obj import INPUTBOARD
 
 class Stage:
     def __init__(self):
-        pass
+        self.handling = None
     def cover(self):
         pass
     def update(self,**info):
@@ -12,7 +12,7 @@ class Stage:
         pass
 
 class Level(Stage):
-    def __init__(self):
+    def __init__(self,ori = None):
         super().__init__()
         # PHYSIC OBJECTS
         self.platforms = []
@@ -33,8 +33,9 @@ class Level(Stage):
         self.throw = 1
         self.initial = 0
         self.launched = False
-        # RENDER MEM
+        # MEMORY
         self.toCleanRects = []
+        self.root = ori
         # DEBUG
         self.debugLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
         self.debugMode = True
@@ -87,10 +88,16 @@ class Level(Stage):
             self.launch_peg()
 
     def update(self,**info):
-        if self.launched:
-            self.simulate(info["dt"])
+        if self.feasibility():
+            if self.launched:
+                self.simulate(info["dt"])
+            else:
+                self.tactic()
         else:
-            self.tactic()
+            if self.root is not None:
+                self.handling.load_stage(self.root)
+            else:
+                quit()
 
     def set_staticlayers(self,bg):
         self.bgLayer.blit(bg,(0,0))

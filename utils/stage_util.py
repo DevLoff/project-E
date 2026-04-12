@@ -1,6 +1,7 @@
 from objects.level_obj import Level
-from objects.visual_obj import Port, Peg, Cloud, Field
+from objects.visual_obj import Port, Peg, Cloud, Field, UIItem
 from objects.physic_obj import Circle, Line
+from objects.menu_obj import Menu, Button
 from utils.image_util import handle_imglike
 
 
@@ -17,6 +18,8 @@ def transform_raw(param):
 def charge_level(param):
     assertions(param, "ports", "pegs", "clouds", "fields", "bench", "space", "bg")
     level = Level()
+    if "root" in param:
+        level.root = param["root"]
     for port in param["ports"]:
         level.add_port(charge_port(port))
     for peg in param["pegs"]:
@@ -65,5 +68,22 @@ def charge_field(param):
     assertions(param,"pos","img")
     return Field(param["pos"],param["img"])
 
-def charge_menu(param): # TODO
-    pass
+def charge_menu(param):
+    assertions(param,"bg", "buttons")
+    menu = Menu()
+    for button in param["buttons"]:
+        menu.add_button(charge_button(button))
+    for label in param["labels"]:
+        menu.add_label(charge_label(label))
+    menu.set_staticlayers(
+        handle_imglike(param["bg"])
+    )
+    return menu
+
+def charge_button(param):
+    assertions(param,"rect","img","type","target")
+    return Button(param["rect"],param["img"],param["type"],param["target"])
+
+def charge_label(param):
+    assertions(param,"rect","img")
+    return UIItem(param["rect"],param["img"])

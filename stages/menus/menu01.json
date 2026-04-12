@@ -1,0 +1,8 @@
+{
+  "type": "menu",
+  "bg": "Images/bg_01_v01.png",
+  "labels": [],
+  "buttons": [
+    {"rect": [0,0,50,20], "img": "Images/no_tex.png", "type": "switch", "target": "stages/levels/level01.json"}
+  ]
+}

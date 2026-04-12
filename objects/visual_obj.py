@@ -5,9 +5,8 @@ from utils.image_util import handle_imglike
 
 class UIItem:
     def __init__(self,rect,img):
-        self.rect = rect
+        self.rect = pygame.Rect(rect)
         self.img = pygame.transform.scale(handle_imglike(img),self.rect.size)
-        self.visibility = False
 
 class Peg(DiscBody):
     def __init__(self,radius,fp):

@@ -1,5 +1,6 @@
 {
   "type": "level",
+  "root": "stages/menus/menu01.json",
   "bench": [20,20],
   "space": [40,0],
   "bg": 0,

@@ -1,6 +1,7 @@
 import pygame
 import json
 from utils.stage_util import transform_raw
+from objects.input_obj import INPUTBOARD
 
 class Game:
     def __init__(self,size):
@@ -17,10 +18,12 @@ class Game:
         self.window.blit(self.loadingScreen,(0,0))
         pygame.display.flip()
         self.loadedStage = transform_raw(json.load(open(filepath, "rb")))
+        self.loadedStage.handling = self
 
     def gameloop(self):
         while self.running:
             dt = self.clock.tick() / 1000
+            INPUTBOARD.update()
 
             for evnt in pygame.event.get():
                 if evnt.type == pygame.QUIT:
