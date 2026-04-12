@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="reorganised the project architecture">
-      <change afterPath="$PROJECT_DIR$/objects/input_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects/game_obj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stages/levels/level01.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/stage_util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects/level_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/level_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects/physic_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/physic_obj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/stage_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/menu_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects/visual_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/visual_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opti_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opti_test.py" afterDir="false" />
     </list>
