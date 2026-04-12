@@ -19,8 +19,11 @@ class DiscBody:
     def move_and_slide(self,dt,gravity,colliders):
         self.velocity += gravity * dt
         self.pos += self.velocity * dt
+        collided = False
         for collider in colliders:
-            self.adjust_collide(collider)
+            if self.adjust_collide(collider):
+                collided = True
+        return collided
 
     def adjust_collide(self,collider):
         dist = collider.proximity(self.pos) - self.radius
@@ -28,6 +31,8 @@ class DiscBody:
             adjustment = collider.normal(self.pos)
             self.velocity -= self.velocity.project(adjustment) * (1 + self.bounciness)
             self.pos += adjustment * abs(dist)
+            return True
+        return False
 
 """
 STATICOBJ

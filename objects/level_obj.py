@@ -1,8 +1,19 @@
 import pygame
 from objects.input_obj import INPUTBOARD
 
-class Level:
+class Stage:
     def __init__(self):
+        pass
+    def cover(self):
+        pass
+    def update(self,**info):
+        pass
+    def render(self):
+        pass
+
+class Level(Stage):
+    def __init__(self):
+        super().__init__()
         # PHYSIC OBJECTS
         self.platforms = []
         self.clouds = []
@@ -31,15 +42,15 @@ class Level:
     def feasibility(self):
         return len(self.bench+self.pegs)>0
 
-    def initialize_pegs(self,*pegs):
-        for peg in pegs:
-            self.bench.append(peg)
-        self.rack_peg()
-
-    def initialize_cloud(self,*clouds):
-        for cloud in clouds:
-            self.clouds.append(cloud)
-            self.platforms += cloud.hitboxes
+    def add_port(self,port):
+        self.ports.append(port)
+    def add_peg(self,peg):
+        self.bench.append(peg)
+    def add_cloud(self,cloud):
+        self.clouds.append(cloud)
+        self.platforms += cloud.hitboxes
+    def add_field(self,field):
+        self.fields.append(field)
 
     def rack_peg(self):
         if len(self.bench)>0:
@@ -58,7 +69,9 @@ class Level:
 
     def simulate(self,dt):
         for peg in self.pegs:
-            peg.move_and_slide(dt,self.gravity,self.platforms)
+            if peg.move_and_slide(dt,self.gravity,self.platforms):
+                for field in self.fields:
+                    field.update(peg)
             if not pygame.display.get_surface().get_rect().collidepoint(peg.pos):
                 self.pegs.remove(peg)
         if INPUTBOARD.pressed("reset"):
@@ -73,25 +86,28 @@ class Level:
             self.launched = True
             self.launch_peg()
 
-    def update(self,dt):
+    def update(self,**info):
         if self.launched:
-            self.simulate(dt)
+            self.simulate(info["dt"])
         else:
             self.tactic()
 
     def set_staticlayers(self,bg):
-        window = pygame.display.get_surface()
         self.bgLayer.blit(bg,(0,0))
         for port in self.ports:
             self.bgLayer.blit(port.img,port.pos+port.offset)
         for cloud in self.clouds:
             self.frontLayer.blit(cloud.img, cloud.pos + cloud.offset)
-        window.blit(self.bgLayer, (0, 0))
-        window.blit(self.frontLayer, (0, 0))
         if self.debugMode:
             for platform in self.platforms:
                 platform.hitbox(self.debugLayer)
-            window.blit(self.debugLayer, (0, 0))
+        self.cover()
+
+    def cover(self):
+        window = pygame.display.get_surface()
+        window.blit(self.bgLayer, (0, 0))
+        window.blit(self.frontLayer, (0, 0))
+        window.blit(self.debugLayer, (0, 0))
         pygame.display.flip()
 
     def set_activelayer(self):

@@ -1,0 +1,25 @@
+{
+  "type": "level",
+  "bench": [20,20],
+  "space": [40,0],
+  "bg": 0,
+  "ports": [
+    {"pos": [400,20], "img": "Images/no_tex.png"}
+  ],
+  "pegs": [
+    {"rad": 10, "img": "Images/peg.png"},
+    {"rad": 10, "img": "Images/peg.png"},
+    {"rad": 10, "img": "Images/peg.png"}
+  ],
+  "clouds": [
+    {"pos": [400,300], "img": 0, "hitboxes": [
+      {"type": "circle", "opts": {
+        "pos": [0,0], "rad": 50
+      }},
+      {"type": "line", "opts": {
+        "one": [-100,-100], "two": [100,100]
+      }}
+    ]}
+  ],
+  "fields": []
+}
