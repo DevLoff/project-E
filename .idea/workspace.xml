@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="reorganised the project architecture">
-      <change afterPath="$PROJECT_DIR$/stages/menus/menu01.json" afterDir="false" />
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="menu stages functional (the whole is now doable)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/game_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/game_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/input_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/input_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/level_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/level_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects/menu_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/menu_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/visual_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/visual_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opti_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opti_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/levels/level01.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/levels/level01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/menu_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/menu_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/stage_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/stage_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stages/menus/menu01.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/menus/menu01.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775813312188</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="menu stages functional (the whole is now doable)">
+      <option name="closed" value="true" />
+      <created>1776014012903</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1776014012903</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -323,7 +323,8 @@
     <MESSAGE value="put more error fence" />
     <MESSAGE value="a version of level editor (i fcking fixed the elliptic normal anomaly)" />
     <MESSAGE value="reorganised the project architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorganised the project architecture" />
+    <MESSAGE value="menu stages functional (the whole is now doable)" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu stages functional (the whole is now doable)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

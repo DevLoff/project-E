@@ -15,6 +15,8 @@ class Button(UIItem):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
             if self.effect == "switch":
                 switch_stage(self.parent.handling,self.target)
+            elif self.effect == "exit":
+                quit()
 
 class Menu(Stage):
     def __init__(self):

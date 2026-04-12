@@ -3,6 +3,8 @@
   "bg": "Images/bg_01_v01.png",
   "labels": [],
   "buttons": [
-    {"rect": [0,0,50,20], "img": "Images/no_tex.png", "type": "switch", "target": "stages/levels/level01.json"}
+    {"rect": [310,205,180,50], "img": "Images/continue_btn.png", "type": "switch", "target": "stages/levels/level01.json"},
+    {"rect": [310,275,180,50], "img": "Images/restart_btn.png", "type": "", "target": ""},
+    {"rect": [310,345,180,50], "img": "Images/exit_btn.png", "type": "exit", "target": ""}
   ]
 }
