@@ -1,0 +1,43 @@
+
+
+{
+  "type": "level",
+  "root": "stages/menus/menu01.json",
+  "bench": [20, 20],
+  "space": [40, 0],
+  "bg": "Images/newyork1a.png",
+  "ports": [
+    {"pos": [400, 20], "img": "Images/no_tex.png"}
+  ],
+  "pegs": [
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"}
+  ],
+  "clouds": [
+    {
+      "pos": [292, 200], 
+      "img": "Images/cloudtype4a.png", 
+      "hitboxes": [
+        {"type": "circle", "opts": {"pos": [-10, 0], "rad": 15}},
+        {"type": "circle", "opts": {"pos": [25, 17], "rad": 16}},
+        {"type": "circle", "opts": {"pos": [-42, -17], "rad": 15}},
+        {"type": "circle", "opts": {"pos": [76, 23], "rad": 10}},
+        {"type": "line", "opts": {"one": [-85, 33], "two": [-72, -34]}},
+        {"type": "line", "opts": {"one": [-72, -34], "two": [-42, -34]}},
+        {"type": "line", "opts": {"one": [40, 11], "two": [65, 19]}}
+      ]
+    },
+    {
+      "pos": [497, 147], 
+      "img": "Images/cloudtype1a.png", 
+      "hitboxes": [
+        {"type": "circle", "opts": {"pos": [-18, -7], "rad": 10}},
+        {"type": "line", "opts": {"one": [-38, 8], "two": [-5, -27]}},
+        {"type": "line", "opts": {"one": [-5, -27], "two": [10, -27]}},
+        {"type": "line", "opts": {"one": [10, -27], "two": [40, 1]}}
+      ]
+    }
+  ],
+  "fields": []
+}

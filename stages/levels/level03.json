@@ -1,0 +1,44 @@
+
+{
+  "type": "level",
+  "root": "stages/menus/menu01.json",
+  "bench": [20, 20],
+  "space": [40, 0],
+  "bg": "Images/paris1a.png",
+  "ports": [
+    {"pos": [20, 105], "img": "Images/no_tex.png"}
+  ],
+  "pegs": [
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"}
+  ],
+  "clouds": [
+    {
+      "pos": [275, 310], 
+      "img": "Images/cloudtype2a.png", 
+      "hitboxes": [
+        {"type": "line", "opts": {"one": [-30, 22], "two": [-40, -3]}},
+        {"type": "line", "opts": {"one": [-40, -3], "two": [-20, -10]}},
+        {"type": "line", "opts": {"one": [-20, -10], "two": [-9, -30]}},
+        {"type": "line", "opts": {"one": [-9, -30], "two": [5, -22]}},
+        {"type": "line", "opts": {"one": [5, -22], "two": [6, -2]}},
+        {"type": "line", "opts": {"one": [6, -2], "two": [36, 13]}}
+      ]
+    },
+    {
+      "pos": [132, 250], 
+      "img": "Images/cloudtype4a.png", 
+      "hitboxes": [
+        {"type": "line", "opts": {"one": [-73, 24], "two": [-60, -43]}},
+        {"type": "line", "opts": {"one": [-60, -43], "two": [-29, -43]}},
+        {"type": "line", "opts": {"one": [52, 3], "two": [76, 8]}},
+        {"type": "circle", "opts": {"pos": [-32, -25], "rad": 15}},
+        {"type": "circle", "opts": {"pos": [2, -11], "rad": 15}},
+        {"type": "circle", "opts": {"pos": [36, 8], "rad": 16}},
+        {"type": "circle", "opts": {"pos": [88, 15], "rad": 10}}
+      ]
+    }
+  ],
+  "fields": []
+}
