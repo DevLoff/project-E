@@ -1,5 +1,7 @@
 import pygame
-from objects.board_obj import INPUTBOARD
+from objects.board_obj import INPUTBOARD, FONTBOARD
+from objects.visual_obj import UIItem
+
 
 class Stage:
     def __init__(self):
@@ -14,19 +16,17 @@ class Stage:
 class Level(Stage):
     def __init__(self,ori = None):
         super().__init__()
-        # PHYSIC OBJECTS
+        # OBJECTS
         self.platforms = []
         self.clouds = []
         self.bench = []
         self.pegs = []
         self.ports = []
         self.fields = []
+        self.hud = dict()
         # LAYERS
         size = pygame.display.get_surface().get_size()
         self.bgLayer = pygame.Surface(size)
-        self.activeLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
-        self.frontLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
-        self.uiLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
         # PARAMETER
         self.gravity = pygame.Vector2(0,100)
         self.airres = 0
@@ -94,6 +94,20 @@ class Level(Stage):
             else:
                 self.tactic()
         else:
+            self.wincondition()
+
+    def construct_endui(self):
+        score = str(sum([field.score for field in self.fields]))
+        self.handling.add_data("score",score)
+        item = pygame.Surface((300,200))
+        item.blit(FONTBOARD.render(score, "arial", 30),(0, 30))
+        return item
+
+    def wincondition(self):
+        if "endui" not in self.hud:
+            self.hud["endui"] = UIItem(pygame.Rect(0,0,300,200),None)
+            self.hud["endui"].raw_image(self.construct_endui())
+        if INPUTBOARD.pressed("click"):
             if self.root is not None:
                 self.handling.load_stage(self.root)
             else:
@@ -104,7 +118,7 @@ class Level(Stage):
         for port in self.ports:
             self.bgLayer.blit(port.img,port.pos+port.offset)
         for cloud in self.clouds:
-            self.frontLayer.blit(cloud.img, cloud.pos + cloud.offset)
+            self.bgLayer.blit(cloud.img, cloud.pos + cloud.offset)
         if self.debugMode:
             for platform in self.platforms:
                 platform.hitbox(self.debugLayer)
@@ -113,35 +127,33 @@ class Level(Stage):
     def cover(self):
         window = pygame.display.get_surface()
         window.blit(self.bgLayer, (0, 0))
-        window.blit(self.frontLayer, (0, 0))
         window.blit(self.debugLayer, (0, 0))
         pygame.display.flip()
 
-    def set_activelayer(self):
-        self.activeLayer = pygame.Surface(self.bgLayer.get_size(),flags=pygame.SRCALPHA)
+    def set_activelayer(self,win):
         newRects = []
         for field in self.fields:
-            newRects.append(self.activeLayer.blit(field.img,field.pos+field.offset))
+            newRects.append(win.blit(field.img,field.pos+field.offset))
         for peg in self.pegs:
-            newRects.append(self.activeLayer.blit(peg.img,peg.pos+peg.offset))
+            newRects.append(win.blit(peg.img,peg.pos+peg.offset))
         return newRects
 
-    def set_uilayer(self):
-        self.uiLayer = pygame.Surface(self.bgLayer.get_size(), flags=pygame.SRCALPHA)
+    def set_uilayer(self,win):
         newRects = []
+        for item in self.hud:
+            newRects.append(win.blit(self.hud[item].img, self.hud[item].rect.topleft))
         for peg in self.bench:
-            newRects.append(self.uiLayer.blit(peg.img,peg.pos+peg.offset))
+            newRects.append(win.blit(peg.img,peg.pos+peg.offset))
         return newRects
 
     def render(self):
         window = pygame.display.get_surface()
         newRects = []
-        window.blit(self.bgLayer, (0, 0))
-        newRects += self.set_activelayer()
-        window.blit(self.activeLayer, (0, 0))
-        window.blit(self.frontLayer, (0, 0))
-        newRects += self.set_uilayer()
-        window.blit(self.uiLayer, (0, 0))
-        window.blit(self.debugLayer, (0, 0))
+        newRects += self.set_activelayer(window)
+        newRects += self.set_uilayer(window)
+        for rect in newRects:
+            window.blit(self.debugLayer.subsurface(rect), rect.topleft)
         pygame.display.flip()
-        self.toCleanRects = newRects
+        for rect in newRects:
+            window.blit(self.bgLayer.subsurface(rect), rect.topleft)
+            window.blit(self.debugLayer.subsurface(rect), rect.topleft)

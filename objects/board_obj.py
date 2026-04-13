@@ -35,6 +35,26 @@ class SoundHandler:
 
     def play(self,tag):
         assert (tag in self.sounds),"Missing sound tag"
-        self.sounds[tag].play()
+        if pygame.mixer.find_channel() is None:
+            pygame.mixer.set_num_channels(pygame.mixer.get_num_channels() + 1)
+        pygame.mixer.find_channel().play(self.sounds[tag])
+
+    def update(self):
+        pass
 
 SOUNDBOARD = SoundHandler()
+
+class FontHandler:
+    def __init__(self):
+        self.fonts = dict()
+
+    def render(self,text,font,size,color=(255,255,255),bold=False,italic=False):
+        return pygame.font.SysFont(font,size,bold,italic).render(text,True,color)
+
+    def add_font_spec(self,font,size,bold,italic):
+        if font not in self.fonts:
+            self.fonts[font] = {size:{pygame.font.Font(font,size)}}
+        elif size not in self.fonts[font]:
+            self.fonts[font][size] = pygame.font.Font(font,size)
+
+FONTBOARD = FontHandler()

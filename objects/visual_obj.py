@@ -7,12 +7,14 @@ class UIItem:
     def __init__(self,rect,img):
         self.rect = pygame.Rect(rect)
         self.img = pygame.transform.scale(handle_imglike(img),self.rect.size)
+    def raw_image(self,img):
+        self.img = pygame.transform.scale(img,self.rect.size)
 
 class Peg(DiscBody):
     def __init__(self,radius,fp):
         super().__init__(radius)
-        self.img = handle_imglike(fp)
-        self.offset = - pygame.Vector2(self.img.get_rect().center)
+        self.img = pygame.transform.scale(handle_imglike(fp),(radius*2,radius*2))
+        self.offset = - pygame.Vector2(radius)
 
 class Port:
     def __init__(self,pos,fp):
