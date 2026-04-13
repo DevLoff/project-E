@@ -2,6 +2,7 @@ import pygame
 from objects.board_obj import INPUTBOARD, FONTBOARD
 from objects.visual_obj import UIItem
 
+import random
 
 class Stage:
     def __init__(self):
@@ -23,6 +24,7 @@ class Level(Stage):
         self.pegs = []
         self.ports = []
         self.fields = []
+        self.raindrops = []
         self.hud = dict()
         # LAYERS
         size = pygame.display.get_surface().get_size()
@@ -33,6 +35,7 @@ class Level(Stage):
         self.throw = 1
         self.initial = 0
         self.launched = False
+        self.rain_triggered = False
         # MEMORY
         self.toCleanRects = []
         self.root = ori
@@ -70,6 +73,17 @@ class Level(Stage):
 
     def simulate(self,dt):
         for peg in self.pegs:
+            for cloud in self.clouds:
+                if not self.rain_triggered and peg.pos.distance_to(cloud.pos) < 50:
+                    for i in range(25):
+                        spawn_x = cloud.pos[0] + random.randint(-40, 40)
+                        spawn_y = cloud.pos[1] + 21
+                        self.raindrops.append(Droplet(spawn_x, spawn_y))
+                    self.rain_triggered = True
+                    self.pegs.remove(peg)
+                    self.launched = False
+                    return 2
+
             if peg.move_and_slide(dt,self.gravity,self.platforms):
                 for field in self.fields:
                     field.update(peg)
@@ -78,23 +92,36 @@ class Level(Stage):
         if INPUTBOARD.pressed("reset"):
             self.pegs.clear()
         if len(self.pegs) < 1:
+            self.rain_triggered = False
             self.launched = False
             self.rack_peg()
+            return 2
+
+        return 3
 
     def tactic(self):
-        self.pegs[0].pos = self.ports[self.initial].pos.copy()
-        if INPUTBOARD.pressed("launch"):
-            self.launched = True
-            self.launch_peg()
+        if len(self.pegs) > 0:
+            self.pegs[0].pos = self.ports[self.initial].pos.copy()
+            if INPUTBOARD.pressed("launch"):
+                self.launched = True
+                self.launch_peg()
+        else:
+            self.rack_peg()
 
     def update(self,**info):
+        for drop in self.raindrops:
+            drop.update()
+        self.raindrops = [d for d in self.raindrops if d.active]
+
         if self.feasibility():
             if self.launched:
-                self.simulate(info["dt"])
+                return self.simulate(info["dt"])
             else:
                 self.tactic()
+                return 2
         else:
             self.wincondition()
+            return 1
 
     def construct_endui(self):
         score = str(sum([field.score for field in self.fields]))
@@ -132,6 +159,8 @@ class Level(Stage):
 
     def set_activelayer(self,win):
         newRects = []
+        for drop in self.raindrops:
+            drop.draw(win)
         for field in self.fields:
             newRects.append(win.blit(field.img,field.pos+field.offset))
         for peg in self.pegs:
@@ -157,3 +186,22 @@ class Level(Stage):
         for rect in newRects:
             window.blit(self.bgLayer.subsurface(rect), rect.topleft)
             window.blit(self.debugLayer.subsurface(rect), rect.topleft)
+
+
+class Droplet:
+    def __init__(self, x, y):
+        self.pos = [x, y]
+        self.speed = random.uniform(7, 12)
+        self.length = random.randint(4, 8)
+        self.active = True
+
+    def update(self):
+        self.pos[1] += self.speed
+        if self.pos[1] > 580:
+            self.active = False
+
+    def draw(self, screen):
+        if self.active:
+            pygame.draw.line(screen, (160, 210, 255), (self.pos[0], self.pos[1]),
+                             (self.pos[0], self.pos[1] + self.length), 1)
+            pygame.draw.line(screen, (200, 240, 255), (self.pos[0], self.pos[1]), (self.pos[0], self.pos[1] + 2), 1)

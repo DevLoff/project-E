@@ -86,6 +86,7 @@ if __name__ == '__main__':
                 menuDisplay.cover()
 
         if gameStageTracker[0]>1:
+            SCREEN.fill((0, 0, 0))
             levelDisplay.object_blit(level)
             levelDisplay.cycle()
         else:

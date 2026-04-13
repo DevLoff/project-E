@@ -13,16 +13,34 @@
     {"rad": 10, "img": "Images/bille1.png"}
   ],
   "clouds": [
-    {"pos": [400,300], "img": "Images/cloudtype1.png", "hitboxes": [
-      {"type": "circle", "opts": {
-        "pos": [0,30], "rad": 50
-      }},
-      {"type": "line", "opts": {
-        "one": [-100,-100], "two": [100,100]
-      }}
-    ]}
+    {
+      "pos": [400, 300],
+      "img": "Images/cloudtype1a.png",
+      "hitboxes": [
+        { "type": "circle", "opts": { "pos": [0, 0], "rad": 25 } },
+        { "type": "line", "opts": { "one": [-35, 0], "two": [34, 0] } }
+      ]
+    },
+    {
+      "pos": [200, 150],
+      "img": "Images/cloudtype2a.png",
+      "hitboxes": [
+        { "type": "circle", "opts": { "pos": [0, 0], "rad": 30 } },
+        { "type": "line", "opts": { "one": [-35, 0], "two": [30, 0] } }
+      ]
+    },
+    {
+      "pos": [600, 150],
+      "img": "Images/cloudtype3a.png",
+      "hitboxes": [
+        { "type": "circle", "opts": { "pos": [0, 0], "rad": 22 } },
+        { "type": "line", "opts": { "one": [-45, 0], "two": [45, 0] } }
+      ]
+    }
   ],
   "fields": [
-    {"pos": [400,550],"img": "Images/field1a.png"}
+    {"pos": [400,580],"img": "Images/field1a.png"},
+    {"pos": [200,580],"img": "Images/field1a.png"},
+    {"pos": [600,580],"img": "Images/field1a.png"}
   ]
 }
