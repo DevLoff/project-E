@@ -1,0 +1,46 @@
+
+{
+  "type": "level",
+  "root": "stages/menus/menu01.json",
+  "bench": [20, 20],
+  "space": [40, 0],
+  "bg": "Images/istanbul1a.png",
+  "ports": [
+    {"pos": [425, 20], "img": "Images/no_tex.png"}
+  ],
+  "pegs": [
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"},
+    {"rad": 10, "img": "Images/bille1.png"}
+  ],
+  "clouds": [
+    {
+      "pos": [450, 118], 
+      "img": "Images/cloudtype1a.png", 
+      "hitboxes": [
+        {"type": "line", "opts": {"one": [-39, 7], "two": [-7, -26]}},
+        {"type": "line", "opts": {"one": [-7, -26], "two": [7, -26]}},
+        {"type": "line", "opts": {"one": [7, -26], "two": [39, 2]}}
+      ]
+    },
+    {
+      "pos": [390, 195], 
+      "img": "Images/cloudtype2a.png", 
+      "hitboxes": [
+        {"type": "line", "opts": {"one": [-40, -2], "two": [-7, -35]}},
+        {"type": "line", "opts": {"one": [-7, -35], "two": [6, -35]}},
+        {"type": "line", "opts": {"one": [6, -35], "two": [41, 13]}}
+      ]
+    },
+    {
+      "pos": [521, 235], 
+      "img": "Images/cloudtype3a.png", 
+      "hitboxes": [
+        {"type": "line", "opts": {"one": [-51, 3], "two": [-1, -22]}},
+        {"type": "line", "opts": {"one": [-1, -22], "two": [48, 5]}}
+      ]
+    }
+  ],
+  "fields": []
+}
