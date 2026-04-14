@@ -2,6 +2,7 @@
 {
   "type": "level",
   "root": "stages/menus/menu01.json",
+  "next_level_file": null,
   "bench": [20, 20],
   "space": [40, 0],
   "bg": "Images/istanbul1a.png",
