@@ -1,52 +1,93 @@
-import pygame.display
+import json
+import pygame
+from objects.level_obj import Level
+# Make sure these imports match your actual file names/locations
+from objects.visual_obj import Cloud, Port, Field, Peg
+from objects.physic_obj import *
 
-from physic_objs import *
+import time
 
-class Peg:
-    def __init__(self,rad,aspect):
-        self.body = DiscBody(rad)
-        self.aspect = aspect
-        self.offset = pygame.Vector2(aspect.get_size())/2
-    def render(self,surface):
-        return surface.blit(self.aspect,self.body.pos-self.offset)
+# At the top of the file
+LAST_LOAD_TIME = 0
 
 
-class Level:
-    def __init__(self):
-        self.platforms = []
-        self.bench = []
-        self.peg = None
+def load_level(path, root):
+    global LAST_LOAD_TIME
+    current_time = time.time()
 
-        self.gravity = pygame.Vector2(0,9.81) * 10
-        self.airres = 1 - 0.00001
-        self.throw = 0.8
+    # If we tried to load a level less than 0.5 seconds ago, REJECT IT
+    if current_time - LAST_LOAD_TIME < 0.5:
+        return None
 
-    def rack_peg(self):
-        if len(self.bench)>0:
-            self.peg = self.bench.pop()
-            self.peg.body.pos = pygame.Vector2(400, 30)
-            return 2
-        return 1
-    def launch_peg(self):
-        if self.peg is not None:
-            modality = self.get_launch_parameter()
-            self.peg.body.velocity += modality[0]*modality[1]*self.throw
-    def get_launch_parameter(self):
-        inputVec = pygame.Vector2(pygame.mouse.get_pos()) - self.peg.body.pos
-        return min(inputVec.length(),100),inputVec.normalize()
+    LAST_LOAD_TIME = current_time
+    print(f"--- VALID LOAD STARTING: {path} ---")
 
-    def update(self,dt):
-        self.peg.body.static_collision_phy(dt,self.gravity,self.airres,self.platforms)
-        if not pygame.display.get_surface().get_rect().collidepoint(self.peg.body.pos):
-            return self.rack_peg()
-        return 3
+    try:
+        # CHANGE: Use 'path' here, NOT 'filename'
+        with open(path, 'r') as f:
+            data = json.load(f)
+            print("LOADING FILE:", path)
+            print("DEBUG JSON next_level_file:", data.get("next_level_file"))
+            print("DATA:", data)
+    except FileNotFoundError:
+        print(f"CRITICAL ERROR: Could not find the file: {path}")
+        return None
 
-    def render(self,surface):
-        rectSet = []
-        for platform in self.platforms:
-            rectSet.append(platform.render(surface)[0])
-        for sitting in self.bench:
-            rectSet.append(sitting.render(surface))
-        if self.peg is not None:
-            rectSet.append(self.peg.render(surface))
-        return rectSet
+    print("LEVEL LOADED WITH NEXT:", data.get("next_level_file"))
+
+    # CHANGE: Use 'root' (the argument), NOT 'root_menu'
+    lvl = Level(ori=root)
+
+    # 1. Background Setup
+    try:
+        if isinstance(data["bg"], str):
+            bg_img = pygame.image.load(data["bg"]).convert()
+        else:
+            bg_img = pygame.Surface((800, 600))
+            bg_img.fill((20, 20, 60))
+    except Exception as e:
+        print(f"Warning: Could not load background {data['bg']}: {e}")
+        bg_img = pygame.Surface((800, 600))
+        bg_img.fill((100, 0, 0))
+
+        # 2. Ports (Launchers)
+    for p in data["ports"]:
+        lvl.add_port(Port(pygame.Vector2(p["pos"]), pygame.image.load(p["img"])))
+
+    # 3. Pegs (Seeds)
+    for p_data in data["pegs"]:
+        img = pygame.image.load(p_data["img"])
+        lvl.add_peg(Peg(p_data["rad"], img))
+
+    # 4. Bench Positioning
+    lvl.arrange_bench(data["bench"], data["space"])
+
+    # 5. Clouds & Hitboxes
+    for c in data["clouds"]:
+        cloud_pos = pygame.Vector2(c["pos"])
+        cloud_img = pygame.image.load(c["img"])
+        hitboxes = []
+
+        for h in c["hitboxes"]:
+            if h["type"] == "circle":
+                abs_pos = cloud_pos + pygame.Vector2(h["opts"]["pos"])
+                hitboxes.append(Circle(abs_pos, h["opts"]["rad"]))
+            elif h["type"] == "line":
+                p1 = cloud_pos + pygame.Vector2(h["opts"]["one"])
+                p2 = cloud_pos + pygame.Vector2(h["opts"]["two"])
+                hitboxes.append(Line(p1, p2))
+
+        # --- FIX: Move Cloud creation OUTSIDE the hitbox loop ---
+        new_cloud = Cloud(cloud_pos, cloud_img)
+        new_cloud.hitboxes = hitboxes
+        lvl.add_cloud(new_cloud)
+
+    # 6. Fields (Targets)
+    for f in data["fields"]:
+        lvl.add_field(Field(pygame.Vector2(f["pos"]), pygame.image.load(f["img"])))
+
+    # 7. Progression & Initialization
+    lvl.next_level_json = data.get("next_level_file")
+    print(f"DEBUG: Loader found next level as: {lvl.next_level_json}")
+    lvl.set_staticlayers(bg_img)
+    return lvl

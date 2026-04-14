@@ -11,6 +11,7 @@ class Game:
 
         self.stageId = None
         self.loadedStage = None
+        self.current_stage = None
         self.loadingScreen = pygame.Surface(SIZE)
 
         self.fpsave = save

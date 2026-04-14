@@ -1,5 +1,6 @@
 {
   "type": "level",
+  "next_level_file": "stages/levels/level03.json",
   "root": "stages/menus/menu01.json",
   "bench": [20, 20],
   "space": [40, 0],
@@ -14,30 +15,30 @@
   ],
   "clouds": [
     {
-      "pos": [292, 200], 
-      "img": "Images/cloudtype4a.png", 
+      "pos": [292, 200],
+      "img": "Images/cloudtype4a.png",
       "hitboxes": [
-        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},   
-        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}}, 
-        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},     
-        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},        
-        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},       
-        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}        
+        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},
+        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}},
+        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},
+        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},
+        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},
+        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}
       ]
     },
     {
-      "pos": [490, 147], 
-      "img": "Images/cloudtype1a.png", 
+      "pos": [490, 147],
+      "img": "Images/cloudtype1a.png",
       "hitboxes": [
-        {"type": "circle", "opts": {"pos": [0, -5], "rad": 22}}, 
-        {"type": "circle", "opts": {"pos": [-22, 5], "rad": 17}}, 
+        {"type": "circle", "opts": {"pos": [0, -5], "rad": 22}},
+        {"type": "circle", "opts": {"pos": [-22, 5], "rad": 17}},
         {"type": "circle", "opts": {"pos": [22, 5], "rad": 17}},
         {"type": "line", "opts": {"one": [-30, 20], "two": [30, 20]}}
       ]
     },
     {
-      "pos": [667, 87], 
-      "img": "Images/cloudtype2a.png", 
+      "pos": [667, 87],
+      "img": "Images/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
@@ -47,20 +48,20 @@
 
     },
     {
-      "pos": [663, 212], 
-      "img": "Images/cloudtype4a.png", 
+      "pos": [663, 212],
+      "img": "Images/cloudtype4a.png",
       "hitboxes": [
-        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},   
-        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}}, 
-        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},     
-        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},        
-        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},       
-        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}        
+        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},
+        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}},
+        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},
+        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},
+        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},
+        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}
       ]
     },
     {
-      "pos": [274, 66], 
-      "img": "Images/cloudtype3a.png", 
+      "pos": [274, 66],
+      "img": "Images/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
@@ -70,8 +71,8 @@
       ]
     },
     {
-      "pos": [103, 139], 
-      "img": "Images/cloudtype2a.png", 
+      "pos": [103, 139],
+      "img": "Images/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
@@ -81,8 +82,8 @@
 
     },
     {
-      "pos": [115, 252], 
-      "img": "Images/cloudtype3a.png", 
+      "pos": [115, 252],
+      "img": "Images/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
@@ -92,8 +93,8 @@
       ]
     },
     {
-      "pos": [463, 323], 
-      "img": "Images/cloudtype3a.png", 
+      "pos": [463, 323],
+      "img": "Images/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},

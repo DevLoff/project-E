@@ -36,12 +36,15 @@ class Level(Stage):
         self.initial = 0
         self.launched = False
         self.rain_triggered = False
+        self.next_level_json = None
         # MEMORY
         self.toCleanRects = []
         self.root = ori
         # DEBUG
         self.debugLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
         self.debugMode = True
+        print("LEVEL CREATED")
+
 
     def feasibility(self):
         return len(self.bench+self.pegs)>0
@@ -102,7 +105,11 @@ class Level(Stage):
     def tactic(self):
         if len(self.pegs) > 0:
             self.pegs[0].pos = self.ports[self.initial].pos.copy()
+
+            # Add a small check: Only launch if the mouse was NOT just used for a menu
             if INPUTBOARD.pressed("launch"):
+                # Clear the input so it doesn't trigger twice
+                INPUTBOARD.inputs["launch"] = False
                 self.launched = True
                 self.launch_peg()
         else:
@@ -131,25 +138,65 @@ class Level(Stage):
         return item
 
     def wincondition(self):
-        if "endui" not in self.hud:
-            self.hud["endui"] = UIItem(pygame.Rect(0,0,300,200),None)
-            self.hud["endui"].raw_image(self.construct_endui())
-        if INPUTBOARD.pressed("click"):
-            if self.root is not None:
-                self.handling.load_stage(self.root)
-            else:
-                quit()
+        # 1. Use 'loadedStage' because your Game class uses that for the loop
+        if not self.handling:
+            return
 
-    def set_staticlayers(self,bg):
-        self.bgLayer.blit(bg,(0,0))
+        # Check if we are already transitioning to avoid the infinite loop
+        # We check both current_stage and loadedStage to be safe
+        if hasattr(self.handling, 'loadedStage'):
+            if self.handling.loadedStage != self:
+                return
+
+        if INPUTBOARD.pressed("click"):
+            INPUTBOARD.inputs["click"] = False
+
+            try:
+                import level_handler
+                target = self.next_level_json if self.next_level_json else "stages/levels/level02.json"
+
+                # Use the 'time gate' logic in level_handler to stop the multiple loads
+                next_lvl = level_handler.load_level(target, self.root)
+
+                if next_lvl:
+                    # 2. Tell the Game object to switch to Level 2
+                    next_lvl.handling = self.handling
+                    self.handling.loadedStage = next_lvl
+
+                    # Also set current_stage if the Game class uses it
+                    if hasattr(self.handling, 'current_stage'):
+                        self.handling.current_stage = next_lvl
+
+                    # 3. Setup Level 2 visual
+                    next_lvl.debugMode = False
+                    next_lvl.set_staticlayers(pygame.image.load("Images/newyork1a.png"))
+
+                    # 4. Force one clean frame of Level 2
+                    next_lvl.render()
+
+                    print("SUCCESS: Transitioned to Level 2.")
+                    return
+            except Exception as e:
+                print(f"Transition Error: {e}")
+
+
+    def set_staticlayers(self, bg):
+        # FORCE a brand new surface for the new level
+        size = pygame.display.get_surface().get_size()
+        self.bgLayer = pygame.Surface(size).convert()
+
+        # If bg is a string (path), load it. If it's a surface, blit it.
+        if isinstance(bg, str):
+            bg_img = pygame.image.load(bg).convert()
+            self.bgLayer.blit(pygame.transform.scale(bg_img, size), (0, 0))
+        else:
+            self.bgLayer.blit(pygame.transform.scale(bg, size), (0, 0))
+
+        # Add ports and clouds
         for port in self.ports:
-            self.bgLayer.blit(port.img,port.pos+port.offset)
+            self.bgLayer.blit(port.img, port.pos + port.offset)
         for cloud in self.clouds:
             self.bgLayer.blit(cloud.img, cloud.pos + cloud.offset)
-        if self.debugMode:
-            for platform in self.platforms:
-                platform.hitbox(self.debugLayer)
-        self.cover()
 
     def cover(self):
         window = pygame.display.get_surface()
@@ -177,16 +224,23 @@ class Level(Stage):
 
     def render(self):
         window = pygame.display.get_surface()
-        newRects = []
-        newRects += self.set_activelayer(window)
-        newRects += self.set_uilayer(window)
-        for rect in newRects:
-            window.blit(self.debugLayer.subsurface(rect), rect.topleft)
-        pygame.display.flip()
-        for rect in newRects:
-            window.blit(self.bgLayer.subsurface(rect), rect.topleft)
-            window.blit(self.debugLayer.subsurface(rect), rect.topleft)
+        if window is None: return
 
+        # 1. Background (The baked layer with clouds)
+        window.blit(self.bgLayer, (0, 0))
+
+        # 2. Objects (The seeds and rain)
+        self.set_activelayer(window)
+
+        # 3. UI (The bench of seeds at the bottom)
+        self.set_uilayer(window)
+
+        # 4. Only show debug shapes if debugMode is True
+        if self.debugMode:
+            window.blit(self.debugLayer, (0, 0))
+
+        # 5. The ONLY flip
+        pygame.display.flip()
 
 class Droplet:
     def __init__(self, x, y):

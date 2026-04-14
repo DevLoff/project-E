@@ -1,12 +1,11 @@
 {
   "type": "level",
+  "next_level_file": "stages/levels/level02.json",
   "root": "stages/menus/menu01.json",
-  "bench": [20,20],
-  "space": [40,0],
+  "bench": [20, 20],
+  "space": [40, 0],
   "bg": 0,
-  "ports": [
-    {"pos": [400,20], "img": "Images/no_tex.png"}
-  ],
+  "ports": [{"pos": [400, 20], "img": "Images/no_tex.png"}],
   "pegs": [
     {"rad": 10, "img": "Images/bille1.png"},
     {"rad": 10, "img": "Images/bille1.png"},
@@ -17,30 +16,37 @@
       "pos": [400, 300],
       "img": "Images/cloudtype1a.png",
       "hitboxes": [
-        { "type": "circle", "opts": { "pos": [0, 0], "rad": 25 } },
-        { "type": "line", "opts": { "one": [-35, 0], "two": [34, 0] } }
+        { "type": "circle", "opts": { "pos": [0, -5], "rad": 28 } },
+        { "type": "circle", "opts": { "pos": [-25, 5], "rad": 20 } },
+        { "type": "circle", "opts": { "pos": [25, 5], "rad": 20 } },
+        { "type": "line", "opts": { "one": [-40, 22], "two": [40, 22] } }
       ]
     },
     {
       "pos": [200, 150],
       "img": "Images/cloudtype2a.png",
       "hitboxes": [
-        { "type": "circle", "opts": { "pos": [0, 0], "rad": 30 } },
-        { "type": "line", "opts": { "one": [-35, 0], "two": [30, 0] } }
+        { "type": "circle", "opts": { "pos": [2, -18], "rad": 24 } },
+        { "type": "circle", "opts": { "pos": [-20, 8], "rad": 24 } },
+        { "type": "circle", "opts": { "pos": [18, 15], "rad": 22 } },
+        { "type": "line", "opts": { "one": [-38, 28], "two": [35, 28] } }
       ]
     },
     {
       "pos": [600, 150],
       "img": "Images/cloudtype3a.png",
       "hitboxes": [
-        { "type": "circle", "opts": { "pos": [0, 0], "rad": 22 } },
-        { "type": "line", "opts": { "one": [-45, 0], "two": [45, 0] } }
+        { "type": "circle", "opts": { "pos": [-35, 2], "rad": 18 } },
+        { "type": "circle", "opts": { "pos": [-5, -8], "rad": 22 } },
+        { "type": "circle", "opts": { "pos": [25, -2], "rad": 20 } },
+        { "type": "circle", "opts": { "pos": [45, 8], "rad": 16 } },
+        { "type": "line", "opts": { "one": [-48, 20], "two": [48, 20] } }
       ]
     }
   ],
   "fields": [
-    {"pos": [400,580],"img": "Images/field1a.png"},
-    {"pos": [200,580],"img": "Images/field1a.png"},
-    {"pos": [600,580],"img": "Images/field1a.png"}
+    {"pos": [400, 580], "img": "Images/field1a.png"},
+    {"pos": [200, 580], "img": "Images/field1a.png"},
+    {"pos": [600, 580], "img": "Images/field1a.png"}
   ]
 }

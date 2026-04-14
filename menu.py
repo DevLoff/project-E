@@ -13,6 +13,7 @@ class Button:
         self.visibility = visibility
     def update(self,mousepos,*args):
         if self.rect.collidepoint(mousepos) and self.visibility:
+            print("BUTTON CLICKED")
             self.action(args)
     def render(self,surface):
         if self.visibility:
