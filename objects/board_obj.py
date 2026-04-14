@@ -9,6 +9,9 @@ class InputHandler:
         self.inputs[tag] = num
         self.lag[tag] = False
 
+    def isinput(self,tag):
+        return tag in self.inputs
+
     def pressed(self,tag):
         assert(tag in self.inputs),"Missing input tag"
         if self.test(tag) and not self.lag[tag]:

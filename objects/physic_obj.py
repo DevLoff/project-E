@@ -56,7 +56,7 @@ ARC
 StaticObj taking the form of an arc, using an ellipse as the base
 """
 
-class Arc(StaticObj):
+class Arc(StaticObj): #depricated
     def __init__(self,center,fvertex,svertex) -> None:
         super().__init__()
         #Center
@@ -72,7 +72,7 @@ class Arc(StaticObj):
         #Focus points
         self.fociRel = self.maxVertex.normalize() * math.sqrt(max(self.maxVertex.length() ** 2 - self.minVertex.length() ** 2, 0))
         self.fFocus, self.sFocus = self.center + self.fociRel, self.center - self.fociRel
-        #Brackets TODO
+        #Brackets
 
 
     def normal(self,point) -> pygame.Vector2:

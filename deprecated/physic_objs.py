@@ -1,4 +1,4 @@
-from physic_utils import *
+from deprecated.physic_utils import *
 
 class StaticObj:
     def __init__(self,rough=1.0):

@@ -1,6 +1,6 @@
 # IMPORT
 from level_handler import *
-from stage_handler import DisplayHandler
+from deprecated.stage_handler import DisplayHandler
 import pickle
 
 """
@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     # META SETUP
     pygame.display.set_caption("Tears of Sky")
-    pygame.display.set_icon(pygame.image.load("Images/logo.png"))
+    pygame.display.set_icon(pygame.image.load("../Images/other/logo.png"))
 
     # VARIABLES
     isGameRunning = True
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     argOptions = {pygame.K_a: 0,pygame.K_z: 1,pygame.K_e: 2,pygame.K_r: 3,pygame.K_t: 4}
 
     # VISUAL INITALISATION
-    STATIC_BG.blit(pygame.transform.scale(pygame.image.load("Images/bg_01_v01.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)),(0,0))
+    STATIC_BG.blit(pygame.transform.scale(pygame.image.load("../Images/backgrounds/bg_01_v01.png"), (SCREEN_WIDTH, SCREEN_HEIGHT)), (0, 0))
     dHandler = DisplayHandler(STATIC_BG)
 
     # GAME LOOP
@@ -121,9 +121,9 @@ if __name__ == '__main__':
                     level.append(LINETP())
 
                 elif evnt.key == pygame.K_q and isDebugModeOn:
-                    level = pickle.load(open("level.pickle","rb"))
+                    level = pickle.load(open("level.pickle", "rb"))
                 elif evnt.key == pygame.K_s and isDebugModeOn:
-                    pickle.dump(level,open("level.pickle","wb"),pickle.HIGHEST_PROTOCOL) # noqa
+                    pickle.dump(level, open("level.pickle", "wb"), pickle.HIGHEST_PROTOCOL) # noqa
 
                 elif isDebugModeOn and len(level)>0:
                     if evnt.key in argOptions:

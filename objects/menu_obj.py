@@ -2,7 +2,7 @@ import pygame
 from objects.visual_obj import UIItem
 from objects.board_obj import INPUTBOARD, SOUNDBOARD
 from objects.level_obj import Stage
-from utils.menu_util import switch_stage, stop
+from utils.menu_util import switch_stage, stop, reset_score
 
 class Button(UIItem):
     def __init__(self,rect,img,action,target):
@@ -18,6 +18,8 @@ class Button(UIItem):
                 switch_stage(self.parent.handling,self.target)
             elif self.effect == "exit":
                 stop(self.parent.handling)
+            elif self.effect == "wipe":
+                reset_score(self.parent.handling)
 
 class Menu(Stage):
     def __init__(self):

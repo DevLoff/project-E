@@ -3,7 +3,7 @@ from objects.visual_obj import Port, Peg, Cloud, Field, UIItem
 from objects.physic_obj import Circle, Line
 from objects.menu_obj import Menu, Button
 from utils.image_util import handle_imglike
-
+from utils.math_util import deg_to_rad
 
 def assertions(param,*tags):
     for tag in tags:

@@ -30,7 +30,7 @@ def narrow_visible(displayed,*ks):
 SCREEN = pygame.display.set_mode((800,600))
 bgColor = pygame.Color(255,255,255)
 
-boxAspect = pygame.image.load("Images/no_tex.png").convert_alpha()
+boxAspect = pygame.image.load("../Images/other/no_tex.png").convert_alpha()
 
 buttons = [
     Button(pygame.Rect(100,100,100,50),boxAspect,lambda x: narrow_visible(x[0],1,0),True),

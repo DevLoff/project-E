@@ -1,4 +1,4 @@
-from physic_utils import *
+from deprecated.physic_utils import *
 import pickle
 from level_handler import Peg
 
@@ -62,6 +62,6 @@ def launch_level(ext,loader):
     newLvl = pickle.load(open(loader,"rb"))
     ext[3].__init__()
     ext[3].platforms = newLvl
-    ext[3].bench.append(Peg(10, pygame.image.load("Images/peg.png")))
+    ext[3].bench.append(Peg(10, pygame.image.load("../Images/pegs/peg.png")))
     ext[3].rack_peg()
     ext[1][0] = 2

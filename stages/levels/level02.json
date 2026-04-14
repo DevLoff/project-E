@@ -1,111 +1,110 @@
 {
   "type": "level",
   "next_level_file": "stages/levels/level03.json",
-  "root": "stages/menus/menu01.json",
+  "root": "stages/menus/menu02.json",
   "bench": [20, 20],
   "space": [40, 0],
-  "bg": "Images/newyork1a.png",
+  "bg": "Images/backgrounds/newyork1a.png",
   "ports": [
-    {"pos": [400, 20], "img": "Images/no_tex.png"}
+    {"pos": [400, 50], "img": "Images/plane.png"}
   ],
   "pegs": [
-    {"rad": 10, "img": "Images/bille1.png"},
-    {"rad": 10, "img": "Images/bille1.png"},
-    {"rad": 10, "img": "Images/bille1.png"}
+    {"rad": 10, "img": "Images/pegs/bille1.png"},
+    {"rad": 10, "img": "Images/pegs/bille1.png"},
+    {"rad": 10, "img": "Images/pegs/bille1.png"}
   ],
   "clouds": [
     {
       "pos": [292, 200],
-      "img": "Images/cloudtype4a.png",
+      "img": "Images/clouds/cloudtype4a.png",
       "hitboxes": [
-        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},
-        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}},
-        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},
-        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},
-        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},
-        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}
+        {"type": "circle", "opts": {"pos": [-55, 2], "rad": 35}},
+        {"type": "circle", "opts": {"pos": [80, 26], "rad": 11}},
+        {"type": "line", "opts": {"one": [-55, -33], "two": [32, 7]}},
+        {"type": "line", "opts": {"one": [32, 7], "two": [80, 15]}},
+        {"type": "line", "opts": {"one": [-55, 37], "two": [80, 37]}}
       ]
     },
     {
       "pos": [490, 147],
-      "img": "Images/cloudtype1a.png",
+      "img": "Images/clouds/cloudtype1a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [0, -5], "rad": 22}},
         {"type": "circle", "opts": {"pos": [-22, 5], "rad": 17}},
-        {"type": "circle", "opts": {"pos": [22, 5], "rad": 17}},
-        {"type": "line", "opts": {"one": [-30, 20], "two": [30, 20]}}
+        {"type": "circle", "opts": {"pos": [22, 5], "rad": 17}}
       ]
     },
     {
       "pos": [667, 87],
-      "img": "Images/cloudtype2a.png",
+      "img": "Images/clouds/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
-        {"type": "circle", "opts": {"pos": [15, 12], "rad": 18}},
-        {"type": "line", "opts": {"one": [-35, 25], "two": [30, 25]}}
+        {"type": "circle", "opts": {"pos": [15, 12], "rad": 18}}
       ]
 
     },
     {
       "pos": [663, 212],
-      "img": "Images/cloudtype4a.png",
+      "img": "Images/clouds/cloudtype4a.png",
       "hitboxes": [
-        {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},
-        {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}},
-        {"type": "circle", "opts": {"pos": [-55, -15], "rad": 32}},
-        {"type": "circle", "opts": {"pos": [5, -5], "rad": 28}},
-        {"type": "circle", "opts": {"pos": [55, 10], "rad": 24}},
-        {"type": "circle", "opts": {"pos": [80, 25], "rad": 15}}
+        {"type": "circle", "opts": {"pos": [-55, 2], "rad": 35}},
+        {"type": "circle", "opts": {"pos": [80, 26], "rad": 11}},
+        {"type": "line", "opts": {"one": [-55, -33], "two": [32, 7]}},
+        {"type": "line", "opts": {"one": [32, 7], "two": [80, 15]}},
+        {"type": "line", "opts": {"one": [-55, 37], "two": [80, 37]}}
       ]
     },
     {
       "pos": [274, 66],
-      "img": "Images/cloudtype3a.png",
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
         {"type": "circle", "opts": {"pos": [20, -2], "rad": 17}},
-        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}},
-        {"type": "line", "opts": {"one": [-45, 18], "two": [45, 18]}}
+        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}}
       ]
     },
     {
       "pos": [103, 139],
-      "img": "Images/cloudtype2a.png",
+      "img": "Images/clouds/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
-        {"type": "circle", "opts": {"pos": [15, 12], "rad": 18}},
-        {"type": "line", "opts": {"one": [-35, 25], "two": [30, 25]}}
+        {"type": "circle", "opts": {"pos": [15, 12], "rad": 18}}
       ]
 
     },
     {
       "pos": [115, 252],
-      "img": "Images/cloudtype3a.png",
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
         {"type": "circle", "opts": {"pos": [20, -2], "rad": 17}},
-        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}},
-        {"type": "line", "opts": {"one": [-45, 18], "two": [45, 18]}}
+        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}}
       ]
     },
     {
       "pos": [463, 323],
-      "img": "Images/cloudtype3a.png",
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
         {"type": "circle", "opts": {"pos": [20, -2], "rad": 17}},
-        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}},
-        {"type": "line", "opts": {"one": [-45, 18], "two": [45, 18]}}
+        {"type": "circle", "opts": {"pos": [40, 5], "rad": 14}}
       ]
     }
 
   ],
   "fields": [
-    {"pos": [290,550],"img": "Images/field1a.png"}
+    {"pos": [50,570],"img": "Images/fields/soil02.png"},
+    {"pos": [150,570],"img": "Images/fields/soil02.png"},
+    {"pos": [250,570],"img": "Images/fields/soil02.png"},
+    {"pos": [350,570],"img": "Images/fields/soil02.png"},
+    {"pos": [450,570],"img": "Images/fields/soil02.png"},
+    {"pos": [550,570],"img": "Images/fields/soil02.png"},
+    {"pos": [650,570],"img": "Images/fields/soil02.png"},
+    {"pos": [750,570],"img": "Images/fields/soil02.png"}
   ]
 }

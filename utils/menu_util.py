@@ -3,3 +3,6 @@ def switch_stage(game,stage):
 
 def stop(game):
     game.running = False
+
+def reset_score(game):
+    game.data = dict()

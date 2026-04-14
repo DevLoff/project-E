@@ -1,10 +1,12 @@
 {
   "type": "menu",
-  "bg": "Images/bg_01_v01.png",
-  "labels": [],
+  "bg": "Images/backgrounds/bg_01_v01.png",
+  "labels": [
+    {"rect": [250,0,300,200], "img": "Images/title.png"}
+  ],
   "buttons": [
-    {"rect": [310,205,180,50], "img": "Images/continue_btn.png", "type": "switch", "target": "stages/levels/level01.json"},
-    {"rect": [310,275,180,50], "img": "Images/restart_btn.png", "type": "", "target": ""},
-    {"rect": [310,345,180,50], "img": "Images/exit_btn.png", "type": "exit", "target": ""}
+    {"rect": [310,205,180,50], "img": "Images/buttons/continue_btn.png", "type": "switch", "target": "stages/menus/menu02.json"},
+    {"rect": [310,275,180,50], "img": "Images/buttons/restart_btn.png", "type": "wipe", "target": ""},
+    {"rect": [310,345,180,50], "img": "Images/buttons/exit_btn.png", "type": "exit", "target": ""}
   ]
 }

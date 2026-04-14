@@ -1,23 +1,23 @@
 
 {
   "type": "level",
-  "root": "stages/menus/menu01.json",
+  "root": "stages/menus/menu02.json",
   "bench": [20, 20],
   "space": [40, 0],
-  "bg": "Images/paris1a.png",
+  "bg": "Images/backgrounds/paris1a.png",
   "ports": [
-    {"pos": [20, 105], "img": "Images/no_tex.png"}
+    {"pos": [400, 50], "img": "Images/plane.png"}
   ],
   "pegs": [
-    {"rad": 10, "img": "Images/bille1.png"},
-    {"rad": 10, "img": "Images/bille1.png"},
-    {"rad": 10, "img": "Images/bille1.png"},
-    {"rad": 10, "img": "Images/bille1.png"}
+    {"rad": 10, "img": "Images/pegs/bille1.png"},
+    {"rad": 10, "img": "Images/pegs/bille1.png"},
+    {"rad": 10, "img": "Images/pegs/bille1.png"},
+    {"rad": 10, "img": "Images/pegs/bille1.png"}
   ],
   "clouds": [
     {
       "pos": [286, 278], 
-      "img": "Images/cloudtype2a.png", 
+      "img": "Images/clouds/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
@@ -28,7 +28,7 @@
     },
     {
       "pos": [548, 136], 
-      "img": "Images/cloudtype2a.png", 
+      "img": "Images/clouds/cloudtype2a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [2, -15], "rad": 20}},
         {"type": "circle", "opts": {"pos": [-18, 5], "rad": 22}},
@@ -39,7 +39,7 @@
     },
     {
       "pos": [379, 174], 
-      "img": "Images/cloudtype4a.png", 
+      "img": "Images/clouds/cloudtype4a.png",
       "hitboxes": [
         {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},   
         {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}}, 
@@ -51,7 +51,7 @@
     },
     {
       "pos": [141, 87], 
-      "img": "Images/cloudtype4a.png", 
+      "img": "Images/clouds/cloudtype4a.png",
       "hitboxes": [
         {"type": "line", "opts": {"one": [-89, 38], "two": [89, 38]}},   
         {"type": "line", "opts": {"one": [-89, 38], "two": [-89, -15]}}, 
@@ -63,7 +63,7 @@
     },
     {
       "pos": [123, 181], 
-      "img": "Images/cloudtype3a.png", 
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
@@ -74,7 +74,7 @@
     },
     {
       "pos": [488, 275], 
-      "img": "Images/cloudtype3a.png", 
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
@@ -85,7 +85,7 @@
     },
     {
       "pos": [672, 58], 
-      "img": "Images/cloudtype3a.png", 
+      "img": "Images/clouds/cloudtype3a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [-30, 0], "rad": 16}},
         {"type": "circle", "opts": {"pos": [-5, -5], "rad": 19}},
@@ -96,7 +96,7 @@
     },
     {
       "pos": [376, 80], 
-      "img": "Images/cloudtype1a.png", 
+      "img": "Images/clouds/cloudtype1a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [0, -5], "rad": 22}}, 
         {"type": "circle", "opts": {"pos": [-22, 5], "rad": 17}}, 
@@ -106,7 +106,7 @@
     },
     {
       "pos": [689, 175], 
-      "img": "Images/cloudtype1a.png", 
+      "img": "Images/clouds/cloudtype1a.png",
       "hitboxes": [
         {"type": "circle", "opts": {"pos": [0, -5], "rad": 22}}, 
         {"type": "circle", "opts": {"pos": [-22, 5], "rad": 17}}, 
@@ -116,6 +116,13 @@
     }
   ],
   "fields": [
-    {"pos": [20,230],"img": "Images/field1a.png"}
+    {"pos": [50,500],"img": "Images/fields/soil02.png"},
+    {"pos": [150,500],"img": "Images/fields/soil02.png"},
+    {"pos": [250,500],"img": "Images/fields/soil02.png"},
+    {"pos": [350,500],"img": "Images/fields/soil02.png"},
+    {"pos": [450,500],"img": "Images/fields/soil02.png"},
+    {"pos": [550,500],"img": "Images/fields/soil02.png"},
+    {"pos": [650,500],"img": "Images/fields/soil02.png"},
+    {"pos": [750,500],"img": "Images/fields/soil02.png"}
   ]
 }

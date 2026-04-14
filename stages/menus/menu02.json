@@ -1,0 +1,14 @@
+{
+  "type": "menu",
+  "bg": "Images/backgrounds/bg_01_v01.png",
+  "labels": [
+    {"rect": [250,0,300,200], "img": "Images/title.png"}
+  ],
+  "buttons": [
+    {"rect": [310,205,180,50], "img": "Images/buttons/level01_btn.png", "type": "switch", "target": "stages/levels/level01.json"},
+    {"rect": [310,275,180,50], "img": "Images/buttons/level02_btn.png", "type": "switch", "target": "stages/levels/level02.json"},
+    {"rect": [310,345,180,50], "img": "Images/buttons/level03_btn.png", "type": "switch", "target": "stages/levels/level03.json"},
+    {"rect": [310,415,180,50], "img": "Images/buttons/level04_btn.png", "type": "switch", "target": "stages/levels/level04.json"},
+    {"rect": [310,485,180,50], "img": "Images/buttons/return_btn.png", "type": "switch", "target": "stages/menus/menu01.json"}
+  ]
+}
