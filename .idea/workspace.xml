@@ -4,56 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="working on level 1">
-      <change afterPath="$PROJECT_DIR$/deprecated/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objects/vfx_obj.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stages/menus/menu02.json" afterDir="false" />
+    <list default="true" id="06494753-d753-4ec0-8677-3ac7484712c2" name="Changes" comment="added assets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/MENu_PNG3ok.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/MENu_PNG3ok.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/bg_01_v01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/backgrounds/bg_01_v01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/bille1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/pegs/bille1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype1a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype1a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype2a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype2a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype3a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype3a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/cloudtype4a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/clouds/cloudtype4a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/continue_btn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/buttons/continue_btn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/exit_btn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/buttons/exit_btn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/field1a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/fields/field1a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/im.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/im.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/istanbul1a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/backgrounds/istanbul1a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/logo.pdn" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/logo.pdn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/newyork1a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/backgrounds/newyork1a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/no_tex.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/no_tex.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/paris1a.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/backgrounds/paris1a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/peg.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/pegs/peg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/restart_btn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/buttons/restart_btn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/start_menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/other/start_menu.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/debug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/level.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/level_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emissions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/emissions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/board_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/board_obj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/game_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/game_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objects/level_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/level_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/menu_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/menu_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/physic_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/physic_obj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opti_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opti_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physic_objs.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/physic_objs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physic_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/physic_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/vfx_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/vfx_obj.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save.json" beforeDir="false" afterPath="$PROJECT_DIR$/save.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/deprecated/stage_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/levels/level01.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/levels/level01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/levels/level02.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/levels/level02.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/levels/level03.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/levels/level03.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/levels/level04.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/levels/level04.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/menus/menu01.json" beforeDir="false" afterPath="$PROJECT_DIR$/stages/menus/menu01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/menu_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/menu_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/stage_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/stage_util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +88,7 @@
       <recent name="C:\Users\natha\PycharmProjects\project-E\Images\backgrounds" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.opti_test">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="prj-e" />
       <option name="ENV_FILES" value="" />
@@ -389,7 +347,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776114650104</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="polishing for demo">
+      <option name="closed" value="true" />
+      <created>1776159227151</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1776159227151</updated>
+    </task>
+    <task id="LOCAL-00026" summary="added assets">
+      <option name="closed" value="true" />
+      <created>1776159297880</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1776159297880</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -404,8 +378,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="link to notion" />
-    <MESSAGE value="main v.01" />
     <MESSAGE value="portable pygame ?" />
     <MESSAGE value="step1 stage handling v01" />
     <MESSAGE value="curve collision (almost?) done" />
@@ -429,7 +401,9 @@
     <MESSAGE value="menu stages functional (the whole is now doable)" />
     <MESSAGE value="main menu screen v1 done and working" />
     <MESSAGE value="working on level 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on level 1" />
+    <MESSAGE value="polishing for demo" />
+    <MESSAGE value="added assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="added assets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

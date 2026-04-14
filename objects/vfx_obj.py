@@ -1,20 +1,25 @@
 import pygame
 import random
 
-class Droplet:
-    def __init__(self, x, y):
-        self.pos = [x, y]
-        self.speed = random.uniform(7, 12)
-        self.length = random.randint(4, 8)
-        self.active = True
+from utils.image_util import handle_imglike
 
-    def update(self):
-        self.pos[1] += self.speed
-        if self.pos[1] > 580:
-            self.active = False
 
-    def draw(self, screen):
-        if self.active:
-            pygame.draw.line(screen, (160, 210, 255), (self.pos[0], self.pos[1]),
-                             (self.pos[0], self.pos[1] + self.length), 1)
-            pygame.draw.line(screen, (200, 240, 255), (self.pos[0], self.pos[1]), (self.pos[0], self.pos[1] + 2), 1)
+class Particle:
+    def __init__(self, rect, img, density):
+        area = pygame.Rect(rect)
+        self.particle = handle_imglike(img)
+        self.mouvement = pygame.Vector2()
+        size = self.particle.get_size()
+        n = round(density*area.w*area.h)
+        poses = [
+            pygame.Vector2(random.randint(0,area.w-size[0]), random.randint(0,area.h-size[1])) for _ in range(n)
+        ]
+        self.pos = pygame.Vector2(area.topleft)
+        self.img = pygame.Surface(area.size,flags=pygame.SRCALPHA)
+        for p in poses:
+            self.img.blit(self.particle,p)
+
+    def update(self,dt,grav):
+        self.mouvement += dt*grav
+        self.pos += self.mouvement*dt
+        return self.pos.y

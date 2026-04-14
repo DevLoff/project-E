@@ -1,6 +1,8 @@
 import pygame
 from objects.board_obj import INPUTBOARD, FONTBOARD
 from objects.visual_obj import UIItem
+from objects.vfx_obj import Particle
+from utils.image_util import handle_imglike
 
 
 class Stage:
@@ -23,6 +25,7 @@ class Level(Stage):
         self.pegs = []
         self.ports = []
         self.fields = []
+        self.particles = []
         self.hud = dict()
         # LAYERS
         size = pygame.display.get_surface().get_size()
@@ -36,6 +39,7 @@ class Level(Stage):
         self.score = 0
         # MEMORY
         self.toCleanRects = []
+        self.precontact = False
         self.root = ori
         # DEBUG
         self.debugLayer = pygame.Surface(size,flags=pygame.SRCALPHA)
@@ -72,6 +76,7 @@ class Level(Stage):
     def simulate(self,dt):
         for peg in self.pegs:
             if peg.move_and_slide(dt,self.gravity,self.platforms):
+                self.create_rain(peg)
                 for field in self.fields:
                     field.update(peg)
             if not pygame.display.get_surface().get_rect().collidepoint(peg.pos):
@@ -82,6 +87,13 @@ class Level(Stage):
             self.launched = False
             self.rack_peg()
 
+    def create_rain(self,peg):
+        self.particles.append(Particle(
+            (peg.pos-pygame.Vector2(peg.img.get_size()[0],0),pygame.Vector2(peg.img.get_size()[0]*2,20)),
+            handle_imglike("Images/droplet.png"),
+            0.002
+        ))
+
     def tactic(self):
         self.pegs[0].pos = self.ports[self.initial].pos.copy()
         if INPUTBOARD.pressed("launch"):
@@ -90,6 +102,9 @@ class Level(Stage):
 
     def update(self,**info):
         self.score = round(sum([field.score for field in self.fields]))
+        for particle in self.particles:
+            if self.handling.size[1]<particle.update(info["dt"],self.gravity):
+                self.particles.remove(particle)
         if self.feasibility():
             self.hud["score"] = UIItem(pygame.Rect(750, 0, len(str(self.score))*8, 30), FONTBOARD.render(str(self.score),"arial",30,(0,0,0)))
             if self.launched:
@@ -100,16 +115,16 @@ class Level(Stage):
             self.wincondition()
 
     def construct_endui(self):
-        score = str(sum([field.score for field in self.fields]))
+        score = str(self.score)
         self.handling.add_data("score",score)
-        item = pygame.Surface((300,200))
-        item.blit(FONTBOARD.render(score, "arial", 30),(0, 30))
+        item = handle_imglike("Images/case.png")
+        item.blit(FONTBOARD.render("Your Score", "arial", 30, (0, 0, 0)), (40, 20))
+        item.blit(FONTBOARD.render(score, "arial", 30, (0,0,0)),(100-len(score)*7, 50))
         return item
 
     def wincondition(self):
         if "endui" not in self.hud:
-            self.hud["endui"] = UIItem(pygame.Rect(0,0,300,200),None)
-            self.hud["endui"].raw_image(self.construct_endui())
+            self.hud["endui"] = UIItem(pygame.Rect(300,250,200,100),self.construct_endui())
         if INPUTBOARD.pressed("click"):
             if self.root is not None:
                 self.handling.load_stage(self.root)
@@ -143,6 +158,8 @@ class Level(Stage):
 
     def set_uilayer(self,win):
         newRects = []
+        for particle in self.particles:
+            newRects.append(win.blit(particle.img, particle.pos))
         for item in self.hud:
             newRects.append(win.blit(self.hud[item].img, self.hud[item].rect.topleft))
         for peg in self.bench:

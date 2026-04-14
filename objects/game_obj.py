@@ -5,14 +5,14 @@ from objects.board_obj import INPUTBOARD
 
 class Game:
     def __init__(self,size,save):
-        SIZE = pygame.Vector2(size)
-        self.window = pygame.display.set_mode(SIZE)
+        self.size = pygame.Vector2(size)
+        self.window = pygame.display.set_mode(self.size)
         self.clock = pygame.time.Clock()
 
         self.stageId = None
         self.loadedStage = None
         self.current_stage = None
-        self.loadingScreen = pygame.Surface(SIZE)
+        self.loadingScreen = pygame.Surface(self.size)
 
         self.fpsave = save
         self.save = json.load(open(save,"r"))

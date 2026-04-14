@@ -1,11 +1,13 @@
 import pygame
 import codecarbon
+import time
 from objects.board_obj import INPUTBOARD, SOUNDBOARD
 from objects.game_obj import Game
 
 if __name__ == '__main__':
     tracker = codecarbon.EmissionsTracker()
     tracker.start()
+    startT = time.time()
     try :
         pygame.init()
         game = Game((800,600),"save.json")
@@ -21,6 +23,7 @@ if __name__ == '__main__':
 
         game.gameloop()
     finally:
-        tracker.stop()
+        endT = time.time()
+        print(tracker.stop()*50,"g equivalent in CO2 for your session")
 
 quit()
